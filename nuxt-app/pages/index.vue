@@ -5,12 +5,6 @@ import companiesToTagsJson from "@/assets/data/company_to_tag";
 import tagsJson from "@/assets/data/tag";
 import { Company, CompanyToTag, Tag } from "models/models";
 
-definePageMeta({
-  layoutTransition: true,
-  // or layoutTransition: {},
-  layout: 'company'
-})
-
 /* ボタン色の切り替え */
 const isChartered = ref<boolean>(false);
 
@@ -107,7 +101,7 @@ const onCardClick= (company: Company): void => {
 				</select>
 				<button>
 					<figure class="search_icon">
-						<img src="icons/search.svg" width="100%"/>
+						<img src="icons/search.svg" style="width: 100%"/>
 					</figure>
 				</button>
 			</article>
@@ -115,7 +109,7 @@ const onCardClick= (company: Company): void => {
 		<div class="container">
 			<article v-for="company in companies" class="card" @click="onCardClick(company)">
 				<figure style="width: 100%">
-					<img :src=company.imgUrl width="100%"/>
+					<img :src=company.imgUrl style="width: 100%"/>
 				</figure>
 				<section>
 					<h2>{{company.name}}</h2>

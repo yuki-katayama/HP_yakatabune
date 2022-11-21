@@ -11,17 +11,19 @@ onMounted(() => {
 
 <template>
 	<Seo />
-	<main>
+	<main class="company">
 		<div class="top">
-			<a href="/">TOP</a> > 屋形船詳細
-			<h2>三浦屋</h2>
+			<div class="pankuzu">
+				<NuxtLink to="/">TOP</NuxtLink> > 屋形船詳細
+			</div>
+			<h2 class="company">三浦屋</h2>
 			<p>神田川支部(エリア名)</p>
 			<p>¥ 12,000</p>
 			<div v-for="tag in company_tags" class="tags">
 				<p>{{tag}}</p>
 			</div>
 			<figure style="width: 100%">
-				<img src="@/images/company.jpg" width=100%/>
+				<img src="@/images/company.jpg" style="width: 100%"/>
 			</figure>
 			<section>
 				<h3>～浮かぶ料亭～一品一品手作りの本格的な会席料理を屋形船で</h3>
@@ -32,7 +34,7 @@ onMounted(() => {
 			<h3>プラン一覧</h3>
 			<article class="card">
 				<figure style="width: 50%">
-					<img src="@/images/plan.jpg" width="100%"/>
+					<img src="@/images/plan.jpg" style="width: 100%"/>
 				</figure>
 				<section>
 					<h3>デートや女子会にもオススメ！乗合屋形船（ふりそで御膳/全10品)</h3>
