@@ -39,4 +39,18 @@ Locally preview production build:
 npm run preview
 ```
 
+```prettier
+install
+* npm
+npm install --save-dev --save-exact prettier
+* yarn
+yarn add --dev --exact prettier
+
+use
+* npm
+npx prettier --write .
+* yarn
+yarn prettier --write .
+```
+
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
