@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import companiesJson from "@/assets/data/company.json";
-import companiesToTagsJson from "@/assets/data/company_to_tag.json";
-import tagsJson from "@/assets/data/tag.json";
-import { Company, CompanyToTag, Tag } from "@/models/models";
+import companiesJson from "@/assets/data/company";
+import companiesToTagsJson from "@/assets/data/company_to_tag";
+import tagsJson from "@/assets/data/tag";
+import { Company, CompanyToTag, Tag } from "models/models";
+
+definePageMeta({
+  layoutTransition: true,
+  // or layoutTransition: {},
+  layout: 'company'
+})
 
 /* ボタン色の切り替え */
 const isChartered = ref<boolean>(false);
@@ -22,7 +28,7 @@ const onMounted = () => {
 	console.log("mounted");
 }
 
-const onChangeIsChartered = (type: boolean) => {
+const onChangeIsChartered = (type: boolean): void => {
 	if (type == true) {
 		isChartered.value = true
 	} else {
@@ -49,10 +55,10 @@ const getTagsList = (companyId: number): string[] => {
 	return tagNameList
 }
 
-const onCardClick= (company: Company) => {
+const onCardClick= (company: Company): void => {
 	console.log(company);
 	navigateTo({
-		path: "company",
+		path: "company/" + company.id,
 		// query: {
 		// 	company: JSON.stringify(company)
 		// }

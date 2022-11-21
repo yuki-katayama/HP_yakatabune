@@ -13,6 +13,7 @@ onMounted(() => {
 	<Seo />
 	<main>
 		<div class="top">
+			<a href="/">TOP</a> > 屋形船詳細
 			<h2>三浦屋</h2>
 			<p>神田川支部(エリア名)</p>
 			<p>¥ 12,000</p>
@@ -31,7 +32,7 @@ onMounted(() => {
 			<h3>プラン一覧</h3>
 			<article class="card">
 				<figure style="width: 50%">
-					<img src="images/plan.jpg" width="100%"/>
+					<img src="@/images/plan.jpg" width="100%"/>
 				</figure>
 				<section>
 					<h3>デートや女子会にもオススメ！乗合屋形船（ふりそで御膳/全10品)</h3>
