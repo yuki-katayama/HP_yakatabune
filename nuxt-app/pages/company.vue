@@ -1,25 +1,17 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 
 const company_tags: string[] = ["天ぷら", "カラオケ有り"]
 const plan_tags: string[] = ["天ぷら", "飲み放題"]
+
+onMounted(() => {
+})
 
 </script>
 
 <template>
 	<Seo />
 	<main>
-		<div class="bar">
-			<input type="date" placeholder="ご利用日"/>
-			<select name="cars" id="cars">
-				<option value="volvo">Volvo</option>
-				<option value="saab">Saab</option>
-				<option value="mercedes">Mercedes</option>
-				<option value="audi">Audi</option>
-			</select>
-			<button>
-				<img src="icons/search.jpg" />
-			</button>
-		</div>
 		<div class="top">
 			<h2>三浦屋</h2>
 			<p>神田川支部(エリア名)</p>
@@ -28,7 +20,7 @@ const plan_tags: string[] = ["天ぷら", "飲み放題"]
 				<p>{{tag}}</p>
 			</div>
 			<figure style="width: 100%">
-				<img src="images/company.jpg" width=100%/>
+				<img src="@/images/company.jpg" width=100%/>
 			</figure>
 			<section>
 				<h3>～浮かぶ料亭～一品一品手作りの本格的な会席料理を屋形船で</h3>

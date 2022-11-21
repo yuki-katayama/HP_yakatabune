@@ -6,11 +6,8 @@ $breakpoints: (
 ) !default;
 
 
-$colors: (
-	reset: #FFFFFF,
-	background: #FFFFFF,
-	font: #000000,
-	sub-font: #87898B,
-	utils: #EA4C60,
-	utils-background: #B8B8B8,
-);
+$white: #FAF8F8;
+$black: #000000;
+$lightgray: #767676;
+$util: #252C5F;
+$util2: #EB5656;

@@ -10,14 +10,17 @@ export default defineNuxtConfig({
 		  apiBase: '/api'
 		}
 	},
-	css: ["@/assets/style.scss"],
+	css: ["@/assets/style.scss",
+		"@/assets/base/_header.scss",
+		"@/assets/base/_reset.scss"
+	],
 	vite: {
 		css: {
 		  preprocessorOptions: {
 			scss: {
-			  additionalData:
-			  `@import "@/assets/base/_header.scss";`
-			}
+			  additionalData:`
+				@import "@/assets/setting/_config.scss";
+			  `}
 		  }
 		}
 	}
