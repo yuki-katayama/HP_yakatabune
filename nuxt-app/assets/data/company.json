@@ -1,51 +1,51 @@
 [
-	{
-		"id": 0,
-		"imgUrl": "/images/sample.jpg",
-		"name": "三浦屋",
-		"area": "神田川支部(エリア名)",
-		"price": 12000
-	},
-	{
-		"id": 1,
-		"imgUrl": "/images/sample.jpg",
-		"name": "三浦屋",
-		"area": "神田川支部(エリア名)",
-		"price": 12000
-	},
-	{
-		"id": 0,
-		"imgUrl": "/images/sample.jpg",
-		"name": "三浦屋",
-		"area": "神田川支部(エリア名)",
-		"price": 12000
-	},
-	{
-		"id": 0,
-		"imgUrl": "/images/sample.jpg",
-		"name": "三浦屋",
-		"area": "神田川支部(エリア名)",
-		"price": 12000
-	},
-	{
-		"id": 0,
-		"imgUrl": "/images/sample.jpg",
-		"name": "三浦屋",
-		"area": "神田川支部(エリア名)",
-		"price": 12000
-	},
-	{
-		"id": 0,
-		"imgUrl": "/images/sample.jpg",
-		"name": "三浦屋",
-		"area": "神田川支部(エリア名)",
-		"price": 12000
-	},
-	{
-		"id": 0,
-		"imgUrl": "/images/sample.jpg",
-		"name": "三浦屋",
-		"area": "神田川支部(エリア名)",
-		"price": 12000
-	}
+  {
+    "id": 0,
+    "imgUrl": "/images/sample.jpg",
+    "name": "三浦屋",
+    "area": "神田川支部(エリア名)",
+    "price": 12000
+  },
+  {
+    "id": 1,
+    "imgUrl": "/images/sample.jpg",
+    "name": "三浦屋",
+    "area": "神田川支部(エリア名)",
+    "price": 12000
+  },
+  {
+    "id": 0,
+    "imgUrl": "/images/sample.jpg",
+    "name": "三浦屋",
+    "area": "神田川支部(エリア名)",
+    "price": 12000
+  },
+  {
+    "id": 0,
+    "imgUrl": "/images/sample.jpg",
+    "name": "三浦屋",
+    "area": "神田川支部(エリア名)",
+    "price": 12000
+  },
+  {
+    "id": 0,
+    "imgUrl": "/images/sample.jpg",
+    "name": "三浦屋",
+    "area": "神田川支部(エリア名)",
+    "price": 12000
+  },
+  {
+    "id": 0,
+    "imgUrl": "/images/sample.jpg",
+    "name": "三浦屋",
+    "area": "神田川支部(エリア名)",
+    "price": 12000
+  },
+  {
+    "id": 0,
+    "imgUrl": "/images/sample.jpg",
+    "name": "三浦屋",
+    "area": "神田川支部(エリア名)",
+    "price": 12000
+  }
 ]

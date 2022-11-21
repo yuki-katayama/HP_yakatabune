@@ -1,13 +1,12 @@
 // 変数
 $breakpoints: (
-  sp: 'screen and (max-width: 767px)',
-  tab: 'screen and (min-width: 768px) and (max-width: 1024)',
-  pc: 'screen and (min-width: 1025px)'
+  sp: "screen and (max-width: 767px)",
+  tab: "screen and (min-width: 768px) and (max-width: 1024)",
+  pc: "screen and (min-width: 1025px)",
 ) !default;
 
-
-$white: #FAF8F8;
+$white: #faf8f8;
 $black: #000000;
 $lightgray: #767676;
-$util: #252C5F;
-$util2: #EB5656;
+$util: #252c5f;
+$util2: #eb5656;
