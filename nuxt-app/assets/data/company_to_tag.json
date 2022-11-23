@@ -9,6 +9,10 @@
   },
   {
     "companyId": 1,
+    "tagId": 1
+  },
+  {
+    "companyId": 1,
     "tagId": 2
   }
 ]

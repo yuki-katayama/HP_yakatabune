@@ -24,13 +24,13 @@ export interface Tag {
 export interface SearchInput {
   date: Date;
   chartered: boolean;
-  area: string[];
-  budget: {
-    min: number;
-    max: number;
-  };
-  payment: "transfer" | "credit"[];
-  other: string[];
+  options: {
+    tagIdList: number[];
+    budget: {
+      min: number;
+      max?: number;
+    };
+  }
 }
 
 export interface Event {

@@ -16,7 +16,7 @@
     "price": 12000
   },
   {
-    "id": 0,
+    "id": 2,
     "imgUrl": "/images/sample.jpg",
     "name": "三浦屋(貸切)",
     "area": "神田川支部(エリア名)",
@@ -24,7 +24,7 @@
     "price": 12000
   },
   {
-    "id": 0,
+    "id": 3,
     "imgUrl": "/images/sample.jpg",
     "name": "三浦屋(貸切)",
     "area": "神田川支部(エリア名)",
@@ -32,7 +32,7 @@
     "price": 12000
   },
   {
-    "id": 0,
+    "id": 4,
     "imgUrl": "/images/sample.jpg",
     "name": "三浦屋(貸切)",
     "area": "神田川支部(エリア名)",
@@ -40,7 +40,7 @@
     "price": 12000
   },
   {
-    "id": 0,
+    "id": 5,
     "imgUrl": "/images/sample.jpg",
     "name": "三浦屋(乗合)",
     "area": "神田川支部(エリア名)",
@@ -48,7 +48,7 @@
     "price": 12000
   },
   {
-    "id": 0,
+    "id": 6,
     "imgUrl": "/images/sample.jpg",
     "name": "三浦屋(乗合)",
     "area": "神田川支部(エリア名)",

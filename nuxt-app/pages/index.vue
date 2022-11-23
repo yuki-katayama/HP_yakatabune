@@ -13,23 +13,38 @@ const styleActiveCharteredButton = "background-color: #fff; color: #000";
 
 /* 検索情報 */
 const search = ref<SearchInput>({
-  date: new Date(),
-  chartered: false,
-  area: [],
-  budget: {
-    min: 0,
-    max: 0,
-  },
-  payment: [],
-  other: [],
-});
+    date: new Date(),
+    chartered: false,
+    options: {
+      budget: {
+        min: 0,
+        max: 0,
+      },
+      tagIdList: [],
+    }
+  });
 
 /* 表示する会社 */
 const companies = ref<Company[]>();
 
 onMounted(() => {
-  companies.value = getCompanies();
+  init()
 });
+
+const init = (): void => {
+  companies.value = getCompanies();
+  search.value = {
+    date: new Date(),
+    chartered: false,
+    options: {
+      budget: {
+        min: 0,
+        max: 0,
+      },
+      tagIdList: [],
+    }
+  }
+}
 
 /* データベースから取得 */
 const getCompanies = (): Company[] => {
@@ -44,30 +59,30 @@ const getTags = (): Tag[] => {
 const getCompaniesToTags = (): CompanyToTag[] => {
   return companiesToTagsJson;
 };
+
 /**
  * @param companyId
  * @return 会社IDに属するタグの名前リスト
  */
-const getTagsListFromCompanyId = (companyId: number): string[] => {
-  let tagNameList: string[] = [];
+const getTagsListFromCompanyId = (companyId: number): Tag[] => {
+  let tagsList: Tag[] = [];
   const toTagList = getCompaniesToTags().filter(
     (to: CompanyToTag) => to.companyId === companyId
   );
-  for (const toTag of toTagList) {
-    for (const tag of getTags()) {
-      if (toTag.tagId === tag.id) {
-        tagNameList.push(tag.name);
+  toTagList.forEach((to: CompanyToTag) => {
+    getTags().forEach((tag: Tag) => {
+      if (to.tagId === tag.id) {
+        tagsList.push(tag);
       }
-    }
-  }
-  return tagNameList;
+    })
+  })
+  return tagsList;
 };
 
 /**
  * 会社の詳細へ遷移
  */
 const onCardClick = (company: Company): void => {
-  console.log(company);
   navigateTo({
     path: "company/" + company.id,
     // query: {
@@ -79,14 +94,16 @@ const onCardClick = (company: Company): void => {
 /**
  * オプションを表示するか
  */
-const onChangeIsOptionbar = (type: boolean) => {
+const onChangeIsOptionbar = (type: boolean): void => {
   isOpenOptionbar.value = type;
 };
 
 /**
  * 検索ボタン押下時の会社のフィルター
  */
-const companyFilter = () => {
+const companyFilter = (): void => {
+  companies.value = getCompanies()
+  /* 乗合・貸切 */
   if (search.value.chartered) {
     companies.value = getCompanies().filter(
       (company) =>
@@ -98,7 +115,25 @@ const companyFilter = () => {
         company.rideMethod === "together" || company.rideMethod === "both"
     );
   }
-  console.log("a");
+  /* タグのフィルター */
+  if (search.value.options.tagIdList.length !== 0) {
+    const companiesTmp: Company[] = [];
+    companies.value.forEach((company: Company) => {
+      let tagsIdList: number[] = [];
+      getTagsListFromCompanyId(company.id).forEach((tag: Tag) => {
+        tagsIdList.push(tag.id)
+      });
+      /* 全てのタグIdを含む会社を検索 */
+      if (search.value.options.tagIdList.every((tagId: number) => tagsIdList.indexOf(tagId) != -1)) {
+        companiesTmp.push(company);
+      }
+    })
+    companies.value = companiesTmp;
+  }
+  if (companies.value.length === 0) {
+    /* 検索結果が0件の場合 */
+    companies.value = getCompanies();
+  }
 };
 </script>
 
@@ -172,8 +207,8 @@ const companyFilter = () => {
         </button>
       </article>
     </div>
+    {{search.options.budget.min}}
     <div class="container">
-      {{ search.budget.max }}
       <article
         v-for="company in companies"
         class="card"
@@ -188,10 +223,10 @@ const companyFilter = () => {
           <p>¥ {{ company.price }}</p>
           <div class="card_tags">
             <template
-              v-for="tagName in getTagsListFromCompanyId(company.id)"
+              v-for="tag in getTagsListFromCompanyId(company.id)"
               class="card_tags"
             >
-              <p class="tag">{{ tagName }}</p>
+              <p class="tag">{{ tag.name }}</p>
             </template>
           </div>
         </section>
