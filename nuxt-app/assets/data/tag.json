@@ -1,14 +1,62 @@
 [
   {
     "id": 0,
-    "name": "天ぷら"
+    "type": "payment",
+    "name": "銀行振込"
   },
   {
     "id": 1,
-    "name": "カラオケあり"
+    "type": "payment",
+    "name": "クレジットカード"
   },
   {
     "id": 2,
+    "type": "other",
+    "name": "天ぷら"
+  },
+  {
+    "id": 3,
+    "type": "other",
+    "name": "カラオケあり"
+  },
+  {
+    "id": 4,
+    "type": "other",
     "name": "展望ありりり"
+  },
+  {
+    "id": 5,
+    "type": "area",
+    "name": "渋谷区"
+  },
+  {
+    "id": 6,
+    "type": "area",
+    "name": "港区"
+  },
+  {
+    "id": 7,
+    "type": "area",
+    "name": "練馬区"
+  },
+  {
+    "id": 8,
+    "type": "area",
+    "name": "目黒区"
+  },
+  {
+    "id": 9,
+    "type": "area",
+    "name": "葛飾区"
+  },
+  {
+    "id": 10,
+    "type": "area",
+    "name": "品川区"
+  },
+  {
+    "id": 11,
+    "type": "area",
+    "name": "新宿区"
   }
 ]
