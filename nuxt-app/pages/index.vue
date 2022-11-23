@@ -13,15 +13,15 @@ const styleActiveCharteredButton = "background-color: #fff; color: #000";
 
 /* 検索情報 */
 const search = ref<SearchInput>({
-	date: new Date(),
-	chartered: false,
-	area: [],
-	budget: {
-		min: 0,
-		max: 0,
-	},
-	payment: [],
-	other: [],
+  date: new Date(),
+  chartered: false,
+  area: [],
+  budget: {
+    min: 0,
+    max: 0,
+  },
+  payment: [],
+  other: [],
 });
 
 /* 表示する会社 */
@@ -29,21 +29,21 @@ const companies = ref<Company[]>();
 
 onMounted(() => {
   companies.value = getCompanies();
-})
+});
 
 /* データベースから取得 */
 const getCompanies = (): Company[] => {
   // カンパニーを全取得するapi
   return companiesJson;
-}
+};
 
 const getTags = (): Tag[] => {
   return tagsJson;
-}
+};
 
 const getCompaniesToTags = (): CompanyToTag[] => {
   return companiesToTagsJson;
-}
+};
 /**
  * @param companyId
  * @return 会社IDに属するタグの名前リスト
@@ -81,19 +81,25 @@ const onCardClick = (company: Company): void => {
  */
 const onChangeIsOptionbar = (type: boolean) => {
   isOpenOptionbar.value = type;
-}
+};
 
 /**
  * 検索ボタン押下時の会社のフィルター
  */
 const companyFilter = () => {
   if (search.value.chartered) {
-    companies.value = getCompanies().filter((company) => company.rideMethod === "chartered" || company.rideMethod === "both" )
+    companies.value = getCompanies().filter(
+      (company) =>
+        company.rideMethod === "chartered" || company.rideMethod === "both"
+    );
   } else {
-    companies.value = getCompanies().filter((company) => company.rideMethod === "together" || company.rideMethod === "both" )
+    companies.value = getCompanies().filter(
+      (company) =>
+        company.rideMethod === "together" || company.rideMethod === "both"
+    );
   }
   console.log("a");
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -127,30 +133,47 @@ const companyFilter = () => {
         <div class="buttons">
           <button
             @click="search.chartered = false"
-            :style="search.chartered ?  styleActiveCharteredButton : styleNotActiveCharteredButton"
+            :style="
+              search.chartered
+                ? styleActiveCharteredButton
+                : styleNotActiveCharteredButton
+            "
           >
             乗合
           </button>
           <button
             @click="search.chartered = true"
-            :style="search.chartered ? styleNotActiveCharteredButton : styleActiveCharteredButton"
+            :style="
+              search.chartered
+                ? styleNotActiveCharteredButton
+                : styleActiveCharteredButton
+            "
           >
             貸切
           </button>
         </div>
-        <input type="button" id="optionbarArea" value="エリア・キーワード" @click="onChangeIsOptionbar(true)"/>
+        <input
+          type="button"
+          id="optionbarArea"
+          value="エリア・キーワード"
+          @click="onChangeIsOptionbar(true)"
+        />
         <div v-if="isOpenOptionbar" ref="optionbar">
-          <Optionbar :search=search :tags=getTags() @changeIsOptionbar=onChangeIsOptionbar />
+          <Optionbar
+            :search="search"
+            :tags="getTags()"
+            @changeIsOptionbar="onChangeIsOptionbar"
+          />
         </div>
         <button>
           <figure class="search_icon" @click="companyFilter">
             <img src="icons/search.svg" style="width: 100%" />
           </figure>
         </button>
-	</article>
+      </article>
     </div>
     <div class="container">
-	{{search.budget.max}}
+      {{ search.budget.max }}
       <article
         v-for="company in companies"
         class="card"

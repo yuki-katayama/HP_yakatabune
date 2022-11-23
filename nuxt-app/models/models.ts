@@ -7,9 +7,7 @@ export interface Company {
   area: string;
   rideMethod: rideMethod;
   price: number;
-  option?: {
-    
-  }
+  option?: {};
 }
 
 export interface CompanyToTag {
@@ -30,13 +28,13 @@ export interface SearchInput {
   budget: {
     min: number;
     max: number;
-  }
+  };
   payment: "transfer" | "credit"[];
   other: string[];
 }
 
 export interface Event {
-  target : {
+  target: {
     checked: boolean;
-  }
+  };
 }
