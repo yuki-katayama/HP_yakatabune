@@ -14,5 +14,13 @@
   {
     "companyId": 1,
     "tagId": 2
+  },
+  {
+    "companyId": 1,
+    "tagId": 3
+  },
+  {
+    "companyId": 1,
+    "tagId": 4
   }
 ]

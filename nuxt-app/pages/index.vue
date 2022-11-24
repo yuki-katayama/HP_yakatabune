@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import companiesJson from "@/assets/data/company";
-import companiesToTagsJson from "@/assets/data/company_to_tag";
+import companiesToTagsJson from "@/assets/data/company-to-tag";
 import tagsJson from "@/assets/data/tag";
 import { Company, CompanyToTag, Tag, SearchInput } from "models/models";
 import Optionbar from "~~/components/Optionbar.vue";
@@ -13,22 +13,22 @@ const styleActiveCharteredButton = "background-color: #fff; color: #000";
 
 /* 検索情報 */
 const search = ref<SearchInput>({
-    date: new Date(),
-    chartered: false,
-    options: {
-      budget: {
-        min: 0,
-        max: 0,
-      },
-      tagIdList: [],
-    }
-  });
+  date: new Date(),
+  chartered: false,
+  options: {
+    budget: {
+      min: 0,
+      max: 0,
+    },
+    tagIdList: [],
+  },
+});
 
 /* 表示する会社 */
 const companies = ref<Company[]>();
 
-onMounted(() => {
-  init()
+onMounted(async () => {
+  init();
 });
 
 const init = (): void => {
@@ -42,9 +42,9 @@ const init = (): void => {
         max: 0,
       },
       tagIdList: [],
-    }
-  }
-}
+    },
+  };
+};
 
 /* データベースから取得 */
 const getCompanies = (): Company[] => {
@@ -74,20 +74,17 @@ const getTagsListFromCompanyId = (companyId: number): Tag[] => {
       if (to.tagId === tag.id) {
         tagsList.push(tag);
       }
-    })
-  })
+    });
+  });
   return tagsList;
 };
 
 /**
  * 会社の詳細へ遷移
  */
-const onCardClick = (company: Company): void => {
+const onNavigateToCompany = async (company: Company) => {
   navigateTo({
     path: "company/" + company.id,
-    // query: {
-    // 	company: JSON.stringify(company)
-    // }
   });
 };
 
@@ -102,7 +99,7 @@ const onChangeIsOptionbar = (type: boolean): void => {
  * 検索ボタン押下時の会社のフィルター
  */
 const companyFilter = (): void => {
-  companies.value = getCompanies()
+  companies.value = getCompanies();
   /* 乗合・貸切 */
   if (search.value.chartered) {
     companies.value = getCompanies().filter(
@@ -121,13 +118,17 @@ const companyFilter = (): void => {
     companies.value.forEach((company: Company) => {
       let tagsIdList: number[] = [];
       getTagsListFromCompanyId(company.id).forEach((tag: Tag) => {
-        tagsIdList.push(tag.id)
+        tagsIdList.push(tag.id);
       });
       /* 全てのタグIdを含む会社を検索 */
-      if (search.value.options.tagIdList.every((tagId: number) => tagsIdList.indexOf(tagId) != -1)) {
+      if (
+        search.value.options.tagIdList.every(
+          (tagId: number) => tagsIdList.indexOf(tagId) != -1
+        )
+      ) {
         companiesTmp.push(company);
       }
-    })
+    });
     companies.value = companiesTmp;
   }
   if (companies.value.length === 0) {
@@ -137,31 +138,9 @@ const companyFilter = (): void => {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "assets/setting/_config.scss";
-.container {
-  width: 100vw;
-  margin: 2rem;
-  display: flex;
-  flex-flow: row wrap;
-  .card {
-    width: 15vw;
-    margin: 2rem;
-    &_tags {
-      display: flex;
-      .tag {
-        background-color: $util;
-        color: $white;
-        margin-right: 1rem;
-      }
-    }
-  }
-}
-</style>
-
 <template>
   <Seo />
-  <main>
+  <main id="home">
     <div class="bar">
       <article class="bar_container">
         <input type="date" value="ご利用日" />
@@ -207,12 +186,11 @@ const companyFilter = (): void => {
         </button>
       </article>
     </div>
-    {{search.options.budget.min}}
     <div class="container">
       <article
         v-for="company in companies"
         class="card"
-        @click="onCardClick(company)"
+        @click="onNavigateToCompany(company)"
       >
         <figure style="width: 100%">
           <img :src="company.imgUrl" style="width: 100%" />

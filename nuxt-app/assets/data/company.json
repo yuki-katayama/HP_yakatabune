@@ -2,7 +2,7 @@
   {
     "id": 0,
     "imgUrl": "/images/sample.jpg",
-    "name": "三浦屋(両方)",
+    "name": "a(両方)",
     "area": "神田川支部(エリア名)",
     "rideMethod": "both",
     "price": 12000
@@ -10,7 +10,7 @@
   {
     "id": 1,
     "imgUrl": "/images/sample.jpg",
-    "name": "三浦屋(両方)",
+    "name": "b(両方)",
     "area": "神田川支部(エリア名)",
     "rideMethod": "both",
     "price": 12000
@@ -18,7 +18,7 @@
   {
     "id": 2,
     "imgUrl": "/images/sample.jpg",
-    "name": "三浦屋(貸切)",
+    "name": "c(貸切)",
     "area": "神田川支部(エリア名)",
     "rideMethod": "chartered",
     "price": 12000
@@ -26,7 +26,7 @@
   {
     "id": 3,
     "imgUrl": "/images/sample.jpg",
-    "name": "三浦屋(貸切)",
+    "name": "d(貸切)",
     "area": "神田川支部(エリア名)",
     "rideMethod": "chartered",
     "price": 12000
@@ -34,7 +34,7 @@
   {
     "id": 4,
     "imgUrl": "/images/sample.jpg",
-    "name": "三浦屋(貸切)",
+    "name": "e(貸切)",
     "area": "神田川支部(エリア名)",
     "rideMethod": "chartered",
     "price": 12000
@@ -42,7 +42,7 @@
   {
     "id": 5,
     "imgUrl": "/images/sample.jpg",
-    "name": "三浦屋(乗合)",
+    "name": "f(乗合)",
     "area": "神田川支部(エリア名)",
     "rideMethod": "together",
     "price": 12000
@@ -50,7 +50,7 @@
   {
     "id": 6,
     "imgUrl": "/images/sample.jpg",
-    "name": "三浦屋(乗合)",
+    "name": "g(乗合)",
     "area": "神田川支部(エリア名)",
     "rideMethod": "together",
     "price": 12000

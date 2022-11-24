@@ -27,7 +27,6 @@ onBeforeUnmount(() => {
 const isOptionArea = ref<boolean>(false);
 const styleActiveOptionButton = "border-bottom: solid 2px #eb5656;";
 
-
 const optionbar = ref<HTMLDivElement>(); // 対象の要素
 const onCloseOptionbar = (e: MouseEvent) => {
   // [対象の要素]が[クリックされた要素]を含まない場合
@@ -41,20 +40,17 @@ const onCloseOptionbar = (e: MouseEvent) => {
 };
 
 const onCheckBox = (event: Event, tagId: number) => {
-	// console.log(event.target.checked)
   if (event.target.checked) {
-	  props.search.options.tagIdList.push(tagId);
-} else {
-	  const index = props.search.options.tagIdList.indexOf(tagId);
-	  props.search.options.tagIdList.splice(index, 1);
+    props.search.options.tagIdList.push(tagId);
+  } else {
+    const index = props.search.options.tagIdList.indexOf(tagId);
+    props.search.options.tagIdList.splice(index, 1);
   }
-  console.log(props.search.options.tagIdList)
 };
 
 const isChecked = (tagId: number) => {
-	console.log((props.search.options.tagIdList.indexOf(tagId)) === -1 ? false : true);
-	return (props.search.options.tagIdList.indexOf(tagId)) === -1 ? false : true;
-}
+  return props.search.options.tagIdList.indexOf(tagId) === -1 ? false : true;
+};
 
 const onChangeIsOptionArea = (type: boolean): void => {
   if (type == true) {
@@ -87,7 +83,11 @@ const onChangeIsOptionArea = (type: boolean): void => {
       <div v-for="tag in tags" key="tag">
         <div v-if="tag.type === 'area'">
           <div class="select_button">
-            <input type="checkbox" @click="onCheckBox($event, tag.id)" :checked="isChecked(tag.id)"/>
+            <input
+              type="checkbox"
+              @click="onCheckBox($event, tag.id)"
+              :checked="isChecked(tag.id)"
+            />
             <label>{{ tag.name }}</label>
           </div>
         </div>
@@ -112,7 +112,11 @@ const onChangeIsOptionArea = (type: boolean): void => {
       <div v-for="tag in tags" key="tag">
         <div v-if="tag.type === 'payment'">
           <div class="select_button">
-            <input type="checkbox" @click="onCheckBox($event, tag.id)" :checked="isChecked(tag.id)" />
+            <input
+              type="checkbox"
+              @click="onCheckBox($event, tag.id)"
+              :checked="isChecked(tag.id)"
+            />
             <label>{{ tag.name }}</label>
           </div>
         </div>

@@ -30,7 +30,7 @@ export interface SearchInput {
       min: number;
       max?: number;
     };
-  }
+  };
 }
 
 export interface Event {

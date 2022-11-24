@@ -29,8 +29,7 @@
 html {
   // min-width: 700px;
   // font-size: min(16px);
-  font-size: 1.2vw;
-  line-height: 1.8rem;
+  font-size: 62.5%; /* -> 10px */
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
@@ -162,7 +161,7 @@ address {
 a {
   background-color: transparent;
   text-decoration: none;
-  color: inherit;
+  // color: inherit;
 }
 
 /**
