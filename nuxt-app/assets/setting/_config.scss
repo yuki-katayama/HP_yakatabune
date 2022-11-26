@@ -5,6 +5,10 @@ $breakpoints: (
   pc: "screen and (min-width: 1025px)",
 ) !default;
 
+.common-container {
+  margin: 1rem 10rem 10rem;
+}
+
 $white: #faf8f8;
 $black: #000000;
 $lightgray: #767676;

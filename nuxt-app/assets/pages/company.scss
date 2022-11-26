@@ -1,18 +1,8 @@
-@import "../setting/_config.scss";
+@import "../setting/config.scss";
+@import "../mixin/title.scss";
 
-@mixin title() {
-  border-left: 3px solid $util;
-  padding: 0 0 0.5rem 1rem;
-  font-size: 2rem;
-}
-
-.pankuzu {
-  color: $lightgray;
-  margin-bottom: 2rem;
-}
-
-.company {
-  margin: 1rem 2rem 10rem;
+#company {
+	@extend .common-container;
   .top {
     width: 100%;
     .title {
@@ -50,7 +40,6 @@
     }
   }
   .planlist {
-    width: 100%;
     margin: 2rem 0;
     .title {
       @include title;
@@ -58,6 +47,7 @@
     }
     .card {
       display: flex;
+      margin: 3rem 0;
       figure {
         width: 30%;
       }
@@ -75,7 +65,6 @@
         }
         .tags {
           display: flex;
-          width: 100%;
           margin-bottom: 1rem;
           .tag {
             color: $util;

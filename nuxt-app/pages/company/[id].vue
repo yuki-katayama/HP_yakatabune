@@ -1,16 +1,25 @@
 <script setup lang="ts">
-import { Company, CompanyToTag, Tag, SearchInput } from "models/models";
-import { ref, onMounted } from "vue";
+import { Company, CompanyToTag, CompanyToPlan, Tag, Plan } from "models/models";
+import { ref, onMounted, onBeforeMount } from "vue";
 import companiesJson from "@/assets/data/company";
+import plansJson from "@/assets/data/plan";
 import companiesToTagsJson from "@/assets/data/company-to-tag";
-import tagsJson from "@/assets/data/tag";
+import companiesToPlansJson from "@/assets/data/company-to-plan";
+import tagsJson from "@/assets/data/company-tag";
 
 const route = useRoute();
 
 const plan_tags: string[] = ["天ぷら", "飲み放題"];
+const companyId: number = Number(route.params.id);
+const company = ref<Company>();
 
+onBeforeMount(() => {
+  console.log("company => beforeMounted");
+  company.value = getCompany(companyId);
+})
 onMounted(() => {
-  console.log(route.params.id);
+  console.log(company)
+  console.log("company => mounted");
 });
 
 const getCompany = (companyId: number) => {
@@ -21,15 +30,40 @@ const getTags = (): Tag[] => {
   return tagsJson;
 };
 
+const getPlans = (): Plan[] => {
+  return plansJson;
+}
+
 const getCompaniesToTags = (): CompanyToTag[] => {
   return companiesToTagsJson;
 };
 
-const company: Company = getCompany(Number(route.params.id));
+const getCompaniesToPlans = (): CompanyToPlan[] => {
+  return companiesToPlansJson;
+};
 
 /**
  * @param companyId
- * @return 会社IDに属するタグの名前リスト
+ * @return 会社IDに属するプランのリスト
+ */
+const getPlansListFromCompanyId = (companyId: number): Plan[] => {
+  let plansList: Plan[] = [];
+  const toPlanList = getCompaniesToPlans().filter(
+    (to: CompanyToPlan) => to.companyId === companyId
+  );
+  toPlanList.forEach((to: CompanyToPlan) => {
+    getPlans().forEach((plan: Plan) => {
+      if (to.planId === plan.id) {
+        plansList.push(plan);
+      }
+    });
+  })
+  return plansList
+}
+
+/**
+ * @param companyId
+ * @return 会社IDに属するタグのリスト
  */
 const getTagsListFromCompanyId = (companyId: number): Tag[] => {
   let tagsList: Tag[] = [];
@@ -46,23 +80,23 @@ const getTagsListFromCompanyId = (companyId: number): Tag[] => {
   return tagsList;
 };
 
-const onNavigateToPlan = () => {
+const onNavigateToPlan = (planId: number) => {
   navigateTo({
-    path: `/plan/1/1`,
+    path: "/plan/" + route.params.id + "/" + planId,
   });
 };
 </script>
 
 <template>
   <Seo />
-  <main class="company">
+  <main id="company">
+    <div class="pankuzu"><NuxtLink to="/">TOP</NuxtLink> > 屋形船詳細</div>
     <div class="top">
-      <div class="pankuzu"><NuxtLink to="/">TOP</NuxtLink> > 屋形船詳細</div>
-      <h2 class="title">{{ company.name }}</h2>
-      <p class="title_sub">{{ company.area }}</p>
+      <h2 class="title">{{ company!.name }}</h2>
+      <p class="title_sub">{{ company!.area }}</p>
       <p class="title_sub">¥ 12,000</p>
       <div class="tags">
-        <template v-for="tag in getTagsListFromCompanyId(company.id)">
+        <template v-for="tag in getTagsListFromCompanyId(company!.id)">
           <p class="tag">{{ tag.name }}</p>
         </template>
       </div>
@@ -80,16 +114,16 @@ const onNavigateToPlan = () => {
     </div>
     <div class="planlist">
       <h3 class="title">プラン一覧</h3>
-      <article class="card" @click="onNavigateToPlan">
+      <article v-for="plan in getPlansListFromCompanyId(company!.id)" class="card" @click="onNavigateToPlan(plan.id)">
         <figure style="width: 50%">
-          <img src="@/images/plan.jpg" style="width: 100%" />
+          <img :src="plan.imagePath" style="width: 100%" />
         </figure>
         <section class="content">
           <h3 class="content_title">
-            デートや女子会にもオススメ！乗合屋形船（ふりそで御膳/全10品)
+            {{plan.name}}
           </h3>
           <p class="content_subtitle">
-            2名から乗船できる乗合屋形船♪旬の食材をふんだんに取り入れた江戸前お料理コースと飲み放題付♪デートや女子会にオススメです★
+            {{plan.content}}
           </p>
           <div class="tags">
             <template v-for="tag in plan_tags">
@@ -101,11 +135,11 @@ const onNavigateToPlan = () => {
               <tbody>
                 <tr>
                   <th>大人</th>
-                  <td>¥ 12,000</td>
+                  <td>¥ {{plan.price.adult}}</td>
                 </tr>
                 <tr>
                   <th>中高生</th>
-                  <td>¥ 10,000</td>
+                  <td>¥ {{plan.price.middle}}</td>
                 </tr>
               </tbody>
             </table>
@@ -113,11 +147,11 @@ const onNavigateToPlan = () => {
               <tbody>
                 <tr>
                   <th>小学生</th>
-                  <td>¥ 6,000</td>
+                  <td>¥ {{plan.price.elementary}}</td>
                 </tr>
                 <tr>
                   <th>幼児</th>
-                  <td>¥ 3,000</td>
+                  <td>¥ {{plan.price.baby}}</td>
                 </tr>
               </tbody>
             </table>
@@ -131,7 +165,7 @@ const onNavigateToPlan = () => {
         <tbody>
           <tr>
             <th>船会社名</th>
-            <td>{{ company.name }}</td>
+            <td>{{ company!.name }}</td>
           </tr>
           <tr>
             <th>電話番号</th>

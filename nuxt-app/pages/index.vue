@@ -2,9 +2,9 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import companiesJson from "@/assets/data/company";
 import companiesToTagsJson from "@/assets/data/company-to-tag";
-import tagsJson from "@/assets/data/tag";
+import tagsJson from "@/assets/data/company-tag";
 import { Company, CompanyToTag, Tag, SearchInput } from "models/models";
-import Optionbar from "~~/components/Optionbar.vue";
+import Optionbar from "@/components/Optionbar.vue";
 
 /* 「乗合・貸切」ボタン色のstyle */
 const isOpenOptionbar = ref<boolean>(false);
