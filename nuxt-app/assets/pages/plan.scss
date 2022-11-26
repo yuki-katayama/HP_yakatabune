@@ -2,145 +2,146 @@
 @import "../mixin/title.scss";
 
 #plan {
-	@extend .common-container;
-	position: relative;
-	figure {
-		width: 50%;
-	}
-	.title {
-		@include title;
-		margin-bottom: 2rem;
-	}
-	.reserve {
-		position: fixed;
-		width: 40%;
-		min-width: 150px;
-		background-color: $white;
-		top: 11rem;
-		right: 4rem;
-		padding-bottom: 2rem;
-		.title {
-			display: flex;
-			align-items: center;
-			background-color: $util;
-			color: $white;
-			height: 5rem;
-			padding:0.5rem;
-		}
-		.calendar {
-			border-bottom: 1px solid $border;
-			&_output {
-				display: flex;
-				color: $lightgray;
-			}
-			&_panel {
-				height: 10rem;
-			}
-		}
-		.people {
-			padding-bottom: 2rem;
-			border-bottom: solid 1px $border;
-			&_output {
-				padding: 1rem;
-				font-size: 1.5rem;
-				display: flex;
-				height: 3rem;
-				align-items: center;
-				justify-content:space-between;
-				font-weight: 600;
-				.display {
-					display: flex;
-					border: solid 1px $border;
-					width: 50%;
-					justify-content:space-between;
-					padding: 0 2rem;
-					figure {
-						text-align: right;
-						width: 5%;
-					}
-				}
-			}
-			&_panel {
-				background-color: #bab6b677;
-				.row {
-					display: flex;
-					padding: 1rem;
-					label {
-						width: 50%;
-						font-weight: 600;
-						font-size: 1.5rem;
-					}
-					p {
-						margin: 0 1.5rem;
-						font-size: 1.2rem;
-						width: 20%;
-						text-align: center;
-					}
-				}
-				.panel_button {
-					background-color: $util;
-					color: $white;
-					font-size: 2rem;
-					width: 15%;
-					height: 2rem;
-					text-align: center;
-				}
-				button:disabled {
-					opacity: 0.5;
-				}
-			}
-		}
-		.sum {
-			display: flex;
-			justify-content: space-between;
-			font-weight: 600;
-			font-size: 2rem;
-			margin: 2rem 5rem;
-			p {
-				color: $util2;
-			}
-		}
-		&_button {
-			margin: 0 auto;
-			display: relative;
-			text-align: center;
-			button {
-				color: #faf8f8;
-				background-color: #eb5656;
-				padding: 1rem;
-				width: 50%;
-				border-radius: 5px;
-			}
-		}
-	}
-	table {
-		width: 50%;
-		font-weight: 600;
-		margin-top: 4rem;
-		th, td {
-			border: 1px solid $border;
-			padding: 1rem 0.5rem;
-		}
-		th {
-			background-color: $table-header;
-		}
-		td {
-			figure {
-				width: 50%;
-			}
-		}
-		.price {
-			display: flex;
-			&_row {
-				display: flex;
-				width: 40%;
-				label {
-					width: 30%;
-				}
-				p {
-					color: $util2;
-				}
-			}
-		}
-	}
+  @extend .common-container;
+  position: relative;
+  figure {
+    width: 50%;
+  }
+  .title {
+    @include title;
+    margin-bottom: 2rem;
+  }
+  .reserve {
+    position: fixed;
+    width: 40%;
+    min-width: 150px;
+    background-color: $white;
+    top: 11rem;
+    right: 4rem;
+    padding-bottom: 2rem;
+    .title {
+      display: flex;
+      align-items: center;
+      background-color: $util;
+      color: $white;
+      height: 5rem;
+      padding: 0.5rem;
+    }
+    .calendar {
+      border-bottom: 1px solid $border;
+      &_output {
+        display: flex;
+        color: $lightgray;
+      }
+      &_panel {
+        height: 10rem;
+      }
+    }
+    .people {
+      padding-bottom: 2rem;
+      border-bottom: solid 1px $border;
+      &_output {
+        padding: 1rem;
+        font-size: 1.5rem;
+        display: flex;
+        height: 3rem;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 600;
+        .display {
+          display: flex;
+          border: solid 1px $border;
+          width: 50%;
+          justify-content: space-between;
+          padding: 0 2rem;
+          figure {
+            text-align: right;
+            width: 5%;
+          }
+        }
+      }
+      &_panel {
+        background-color: #bab6b677;
+        .row {
+          display: flex;
+          padding: 1rem;
+          label {
+            width: 50%;
+            font-weight: 600;
+            font-size: 1.5rem;
+          }
+          p {
+            margin: 0 1.5rem;
+            font-size: 1.2rem;
+            width: 20%;
+            text-align: center;
+          }
+        }
+        .panel_button {
+          background-color: $util;
+          color: $white;
+          font-size: 2rem;
+          width: 15%;
+          height: 2rem;
+          text-align: center;
+        }
+        button:disabled {
+          opacity: 0.5;
+        }
+      }
+    }
+    .sum {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 2rem;
+      margin: 2rem 5rem;
+      p {
+        color: $util2;
+      }
+    }
+    &_button {
+      margin: 0 auto;
+      display: relative;
+      text-align: center;
+      button {
+        color: #faf8f8;
+        background-color: #eb5656;
+        padding: 1rem;
+        width: 50%;
+        border-radius: 5px;
+      }
+    }
+  }
+  table {
+    width: 50%;
+    font-weight: 600;
+    margin-top: 4rem;
+    th,
+    td {
+      border: 1px solid $border;
+      padding: 1rem 0.5rem;
+    }
+    th {
+      background-color: $table-header;
+    }
+    td {
+      figure {
+        width: 50%;
+      }
+    }
+    .price {
+      display: flex;
+      &_row {
+        display: flex;
+        width: 40%;
+        label {
+          width: 30%;
+        }
+        p {
+          color: $util2;
+        }
+      }
+    }
+  }
 }

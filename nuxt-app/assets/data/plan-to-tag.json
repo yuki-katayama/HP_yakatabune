@@ -1,10 +1,10 @@
 [
-	{
-		"planId": 0,
-		"tagId": 0
-	},
-	{
-		"planId": 0,
-		"tagId": 1
-	}
+  {
+    "planId": 0,
+    "tagId": 0
+  },
+  {
+    "planId": 0,
+    "tagId": 1
+  }
 ]

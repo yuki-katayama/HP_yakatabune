@@ -16,9 +16,9 @@ const company = ref<Company>();
 onBeforeMount(() => {
   console.log("company => beforeMounted");
   company.value = getCompany(companyId);
-})
+});
 onMounted(() => {
-  console.log(company)
+  console.log(company);
   console.log("company => mounted");
 });
 
@@ -32,7 +32,7 @@ const getTags = (): Tag[] => {
 
 const getPlans = (): Plan[] => {
   return plansJson;
-}
+};
 
 const getCompaniesToTags = (): CompanyToTag[] => {
   return companiesToTagsJson;
@@ -57,9 +57,9 @@ const getPlansListFromCompanyId = (companyId: number): Plan[] => {
         plansList.push(plan);
       }
     });
-  })
-  return plansList
-}
+  });
+  return plansList;
+};
 
 /**
  * @param companyId
@@ -114,16 +114,20 @@ const onNavigateToPlan = (planId: number) => {
     </div>
     <div class="planlist">
       <h3 class="title">プラン一覧</h3>
-      <article v-for="plan in getPlansListFromCompanyId(company!.id)" class="card" @click="onNavigateToPlan(plan.id)">
+      <article
+        v-for="plan in getPlansListFromCompanyId(company!.id)"
+        class="card"
+        @click="onNavigateToPlan(plan.id)"
+      >
         <figure style="width: 50%">
           <img :src="plan.imagePath" style="width: 100%" />
         </figure>
         <section class="content">
           <h3 class="content_title">
-            {{plan.name}}
+            {{ plan.name }}
           </h3>
           <p class="content_subtitle">
-            {{plan.content}}
+            {{ plan.content }}
           </p>
           <div class="tags">
             <template v-for="tag in plan_tags">
@@ -135,11 +139,11 @@ const onNavigateToPlan = (planId: number) => {
               <tbody>
                 <tr>
                   <th>大人</th>
-                  <td>¥ {{plan.price.adult}}</td>
+                  <td>¥ {{ plan.price.adult }}</td>
                 </tr>
                 <tr>
                   <th>中高生</th>
-                  <td>¥ {{plan.price.middle}}</td>
+                  <td>¥ {{ plan.price.middle }}</td>
                 </tr>
               </tbody>
             </table>
@@ -147,11 +151,11 @@ const onNavigateToPlan = (planId: number) => {
               <tbody>
                 <tr>
                   <th>小学生</th>
-                  <td>¥ {{plan.price.elementary}}</td>
+                  <td>¥ {{ plan.price.elementary }}</td>
                 </tr>
                 <tr>
                   <th>幼児</th>
-                  <td>¥ {{plan.price.baby}}</td>
+                  <td>¥ {{ plan.price.baby }}</td>
                 </tr>
               </tbody>
             </table>

@@ -1,7 +1,6 @@
 export type rideMethod = "together" | "chartered" | "both";
-export type seatType = "座席"
-export type toiletType = "洋式" | "和式"
-
+export type seatType = "座席";
+export type toiletType = "洋式" | "和式";
 
 export interface Company {
   id: number;
@@ -31,30 +30,30 @@ export interface Tag {
 
 export interface Plan {
   id: number;
-  name: string,
-  content: string,
+  name: string;
+  content: string;
   requiredTime: Date;
   departureTime: Date;
-  appearance: string,
+  appearance: string;
   seat: seatType;
   deck: boolean;
   wifi: boolean;
   allergySupport: boolean;
   toilet: toiletType;
-  imagePath: string,
+  imagePath: string;
   cuisine: {
-    explain: string,
-    imagePath: string
-  }
-  tourCourse: string,
+    explain: string;
+    imagePath: string;
+  };
+  tourCourse: string;
   price: {
     adult: number;
     middle: number;
     elementary: number;
     baby: number;
-  }
-  place: string,
-  notes: string,
+  };
+  place: string;
+  notes: string;
 }
 
 export interface SearchInput {
@@ -69,7 +68,6 @@ export interface SearchInput {
   };
 }
 
-
 export interface Event {
   target: {
     checked: boolean;
@@ -77,11 +75,11 @@ export interface Event {
 }
 
 export interface Reserve {
-  date: Date,
+  date: Date;
   num: {
-    adult: number,
-    middle: number,
-    elementary: number,
+    adult: number;
+    middle: number;
+    elementary: number;
     baby: number;
-  }
+  };
 }

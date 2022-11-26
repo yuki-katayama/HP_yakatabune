@@ -2,7 +2,7 @@
 @import "../mixin/title.scss";
 
 #company {
-	@extend .common-container;
+  @extend .common-container;
   .top {
     width: 100%;
     .title {
