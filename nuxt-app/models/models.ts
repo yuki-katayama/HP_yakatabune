@@ -75,3 +75,13 @@ export interface Event {
     checked: boolean;
   };
 }
+
+export interface Reserve {
+  date: Date,
+  num: {
+    adult: number,
+    middle: number,
+    elementary: number,
+    baby: number;
+  }
+}

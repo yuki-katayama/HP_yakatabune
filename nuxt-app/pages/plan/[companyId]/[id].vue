@@ -1,18 +1,41 @@
 <script setup lang="ts">
-import { onMounted, onBeforeMount } from "vue";
+import { ref, computed, onMounted, onBeforeMount } from "vue";
 import companiesToPlasnsJson from "@/assets/data/company-to-plan"
 import PlansJson from "@/assets/data/plan"
 import companiesJson from "@/assets/data/company"
-import { Company, CompanyToPlan, Plan } from "models/models";
+import { Company, CompanyToPlan, Plan, Reserve} from "models/models";
 
 const route = useRoute();
 const companyId = Number(route.params.companyId);
 const planId = Number(route.params.id);
 const plan = ref<Plan>();
+const reserve = ref<Reserve>();
+
+const sumPrice = computed(() => {
+	return (reserve.value!.num.adult * plan.value!.price.adult)
+		+ (reserve.value!.num.middle * plan.value!.price.middle)
+		+ (reserve.value!.num.elementary * plan.value!.price.elementary)
+		+ (reserve.value!.num.baby * plan.value!.price.baby)
+})
+const sumNum = computed(() => {
+	return reserve.value!.num.adult
+		+ reserve.value!.num.middle
+		+ reserve.value!.num.elementary
+		+ reserve.value!.num.baby
+})
 
 onBeforeMount(() => {
 	console.log("plan => beforeMounted")
 	plan.value = getPlan(planId);
+	reserve.value = {
+		date: new Date(),
+		num: {
+			adult: 0,
+			middle: 0,
+			elementary: 0,
+			baby: 0,
+		}
+	}
 })
 
 onMounted(() => {
@@ -29,6 +52,20 @@ const getCompany = (companyId: number) => {
   return companiesJson.find((company: Company) => company.id === companyId);
 };
 
+const getPlan = (planId: number) => {
+	return PlansJson.find((plan: Plan) =>
+			plan.id === planId
+		)
+}
+
+const changeReserve = (kind: string, type: string) => {
+	switch (kind) {
+		case "adult":
+			if (type === '-' && reserve.value!.num.adult - 1 < 0) {
+				reserve.num.adult++
+			}
+	}
+}
 const isCorrectPlan = () => {
 	const isCompanyHavePlan: boolean = !!getCompaniesToPlans().find((to: CompanyToPlan) =>
 		to.companyId === companyId && to.planId === planId
@@ -47,11 +84,6 @@ const isCorrectPlan = () => {
 	}
 }
 
-const getPlan = (planId: number) => {
-	return PlansJson.find((plan: Plan) =>
-		plan.id === planId
-		)
-	}
 
 </script>
 
@@ -185,39 +217,42 @@ const getPlan = (planId: number) => {
 					<label>人数</label>
 					<div class="display">
 						<p>✖︎</p>
-						<p>0 人</p>
+						<p>{{sumNum}} 人</p>
+						<figure>
+							<img src="/icons/down.svg" style="width: 100%"/>
+						</figure>
 					</div>
 				</div>
 				<div class="people_panel">
 					<div class="row">
 						<label>大人</label>
-						<button class="panel_button">-</button>
-						<p>2人</p>
-						<button class="panel_button">+</button>
+						<button class="panel_button" :disabled="reserve!.num.adult < 1"  @click="reserve!.num.adult--">-</button>
+						<p>{{reserve!.num.adult}}人</p>
+						<button class="panel_button" @click="reserve!.num.adult++">+</button>
 					</div>
 					<div class="row">
 						<label>中高生</label>
-						<button class="panel_button">-</button>
-						<p>2人</p>
-						<button class="panel_button">+</button>
+						<button class="panel_button" :disabled="reserve!.num.middle < 1" @click="reserve!.num.middle--">-</button>
+						<p>{{reserve!.num.middle}}人</p>
+						<button class="panel_button" @click="reserve!.num.middle++">+</button>
 					</div>
 					<div class="row">
 						<label>小学生</label>
-						<button class="panel_button">-</button>
-						<p>2人</p>
-						<button class="panel_button">+</button>
+						<button class="panel_button" :disabled="reserve!.num.elementary < 1" @click="reserve!.num.elementary--">-</button>
+						<p>{{reserve!.num.elementary}}人</p>
+						<button class="panel_button" @click="reserve!.num.elementary++">+</button>
 					</div>
 					<div class="row">
-						<label>幼児</label>
-						<button class="panel_button">-</button>
-						<p>2人</p>
-						<button class="panel_button">+</button>
+						<label>乳幼児</label>
+						<button class="panel_button" :disabled="reserve!.num.baby < 1" @click="reserve!.num.baby--">-</button>
+						<p>{{reserve!.num.baby}}人</p>
+						<button class="panel_button" @click="reserve!.num.baby++">+</button>
 					</div>
 				</div>
 			</div>
 			<div class="sum">
 				<label>合計(税込)</label>
-				<p>¥ 42,000</p>
+				<p>¥ {{sumPrice}}</p>
 			</div>
 			<div class="reserve_button">
 				<button>予約する</button>

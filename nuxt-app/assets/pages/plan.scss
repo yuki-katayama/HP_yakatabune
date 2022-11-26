@@ -16,13 +16,15 @@
 		width: 40%;
 		min-width: 150px;
 		background-color: $white;
-		top: 6rem;
+		top: 11rem;
 		right: 4rem;
 		padding-bottom: 2rem;
 		.title {
+			display: flex;
+			align-items: center;
 			background-color: $util;
 			color: $white;
-			height: 3rem;
+			height: 5rem;
 			padding:0.5rem;
 		}
 		.calendar {
@@ -40,6 +42,7 @@
 			border-bottom: solid 1px $border;
 			&_output {
 				padding: 1rem;
+				font-size: 1.5rem;
 				display: flex;
 				height: 3rem;
 				align-items: center;
@@ -47,7 +50,14 @@
 				font-weight: 600;
 				.display {
 					display: flex;
+					border: solid 1px $border;
+					width: 50%;
 					justify-content:space-between;
+					padding: 0 2rem;
+					figure {
+						text-align: right;
+						width: 5%;
+					}
 				}
 			}
 			&_panel {
@@ -64,6 +74,7 @@
 						margin: 0 1.5rem;
 						font-size: 1.2rem;
 						width: 20%;
+						text-align: center;
 					}
 				}
 				.panel_button {
@@ -74,13 +85,17 @@
 					height: 2rem;
 					text-align: center;
 				}
+				button:disabled {
+					opacity: 0.5;
+				}
 			}
 		}
 		.sum {
 			display: flex;
 			justify-content: space-between;
 			font-weight: 600;
-			padding: 2rem 0;
+			font-size: 2rem;
+			margin: 2rem 5rem;
 			p {
 				color: $util2;
 			}
