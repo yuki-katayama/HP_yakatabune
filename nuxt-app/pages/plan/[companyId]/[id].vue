@@ -199,7 +199,9 @@ const isCorrectPlan = () => {
           <label>ご利用日</label>
           <p>11月21日</p>
         </div>
-        <div class="calendar_panel"></div>
+        <div class="calendar_panel">
+			<Calendar />
+		</div>
       </div>
       <div class="people">
         <div class="people_output">
