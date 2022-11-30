@@ -5,11 +5,23 @@ import PlansJson from "@/assets/data/plan";
 import companiesJson from "@/assets/data/company";
 import { Company, CompanyToPlan, Plan, Reserve } from "models/models";
 
+
+
 const route = useRoute();
 const companyId = Number(route.params.companyId);
 const planId = Number(route.params.id);
+const taxRate = 0.1; // 10%
 const plan = ref<Plan>();
-const reserve = ref<Reserve>();
+const reserve = ref<Reserve>({
+	  date: new Date(),
+	  num: {
+		adult: 0,
+		middle: 0,
+		elementary: 0,
+		baby: 0,
+	  },
+	}
+);
 
 const sumPrice = computed(() => {
   return (
@@ -29,17 +41,7 @@ const sumNum = computed(() => {
 });
 
 onBeforeMount(() => {
-  console.log("plan => beforeMounted");
-  plan.value = getPlan(planId);
-  reserve.value = {
-    date: new Date(),
-    num: {
-      adult: 0,
-      middle: 0,
-      elementary: 0,
-      baby: 0,
-    },
-  };
+	console.log("plan => beforeMounted");
 });
 
 onMounted(() => {
@@ -59,14 +61,8 @@ const getPlan = (planId: number) => {
   return PlansJson.find((plan: Plan) => plan.id === planId);
 };
 
-const changeReserve = (kind: string, type: string) => {
-  switch (kind) {
-    case "adult":
-      if (type === "-" && reserve.value!.num.adult - 1 < 0) {
-        reserve.num.adult++;
-      }
-  }
-};
+plan.value = getPlan(planId);
+
 const isCorrectPlan = () => {
   const isCompanyHavePlan: boolean = !!getCompaniesToPlans().find(
     (to: CompanyToPlan) => to.companyId === companyId && to.planId === planId
@@ -95,7 +91,7 @@ const isCorrectPlan = () => {
       <NuxtLink to="/">TOP</NuxtLink>
       >
       <NuxtLink :to="{ path: '/company/' + companyId }">{{
-        getCompany(companyId).name
+        getCompany(companyId)!.name
       }}</NuxtLink>
       > 屋形船詳細
     </div>
@@ -271,11 +267,15 @@ const isCorrectPlan = () => {
             <p>{{ reserve!.num.baby }}人</p>
             <button class="panel_button" @click="reserve!.num.baby++">+</button>
           </div>
+		</div>
+		<div class="sum">
+		  <label>消費税</label>
+		  <p>¥ {{ sumPrice * taxRate}}</p>
+		</div>
         </div>
-      </div>
       <div class="sum">
         <label>合計(税込)</label>
-        <p>¥ {{ sumPrice }}</p>
+        <p>¥ {{ (sumPrice * taxRate) + sumPrice}}</p>
       </div>
       <div class="reserve_button">
         <button>予約する</button>
