@@ -5,23 +5,20 @@ import PlansJson from "@/assets/data/plan";
 import companiesJson from "@/assets/data/company";
 import { Company, CompanyToPlan, Plan, Reserve } from "models/models";
 
-
-
 const route = useRoute();
 const companyId = Number(route.params.companyId);
 const planId = Number(route.params.id);
 const taxRate = 0.1; // 10%
 const plan = ref<Plan>();
 const reserve = ref<Reserve>({
-	  date: new Date(),
-	  num: {
-		adult: 0,
-		middle: 0,
-		elementary: 0,
-		baby: 0,
-	  },
-	}
-);
+  date: new Date(),
+  num: {
+    adult: 0,
+    middle: 0,
+    elementary: 0,
+    baby: 0,
+  },
+});
 
 const sumPrice = computed(() => {
   return (
@@ -41,7 +38,7 @@ const sumNum = computed(() => {
 });
 
 onBeforeMount(() => {
-	console.log("plan => beforeMounted");
+  console.log("plan => beforeMounted");
 });
 
 onMounted(() => {
@@ -200,8 +197,8 @@ const isCorrectPlan = () => {
           <p>11月21日</p>
         </div>
         <div class="calendar_panel">
-			<Calendar />
-		</div>
+          <Calendar />
+        </div>
       </div>
       <div class="people">
         <div class="people_output">
@@ -269,15 +266,15 @@ const isCorrectPlan = () => {
             <p>{{ reserve!.num.baby }}人</p>
             <button class="panel_button" @click="reserve!.num.baby++">+</button>
           </div>
-		</div>
-		<div class="sum">
-		  <label>消費税</label>
-		  <p>¥ {{ sumPrice * taxRate}}</p>
-		</div>
         </div>
+        <div class="sum">
+          <label>消費税</label>
+          <p>¥ {{ sumPrice * taxRate }}</p>
+        </div>
+      </div>
       <div class="sum">
         <label>合計(税込)</label>
-        <p>¥ {{ (sumPrice * taxRate) + sumPrice}}</p>
+        <p>¥ {{ sumPrice * taxRate + sumPrice }}</p>
       </div>
       <div class="reserve_button">
         <button>予約する</button>
