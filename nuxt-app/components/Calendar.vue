@@ -36,7 +36,7 @@ const getMonthHolidays = (): JapaneseHolidays.Holiday[]  => {
 	const holidays = JapaneseHolidays.getHolidaysOf(Number(currentDate.value.format("YYYY")));
   let monthHolidays: JapaneseHolidays.Holiday[] = [];
 	holidays.forEach((holiday: JapaneseHolidays.Holiday) => {
-		if (currentDate.value.get("month") === holiday.month) {
+		if (currentDate.value.get("month") + 1 === holiday.month) {
 			monthHolidays.push(holiday)
 		}
 	});
@@ -44,9 +44,10 @@ const getMonthHolidays = (): JapaneseHolidays.Holiday[]  => {
 }
 
 const getHoliday =(month: number, day: number): JapaneseHolidays.Holiday | {name: ""}  => {
-  const holiday = holidays.find((holiday: JapaneseHolidays.Holiday) =>
+  const holiday = holidays.value.find((holiday: JapaneseHolidays.Holiday) =>
     holiday.month === month && holiday.date === day
   )
+  console.log(holidays.value, month, day)
   if (holiday === undefined) {
     return {name: ""}
   }
@@ -111,7 +112,6 @@ const getCelColor = (youbi: string, date: moment.Moment): any => {
 const getCalendar = () => {
   const endDate = getEndDate();
   let calendarDate = getStartDate();
-  console.log(calendarDate.format("YYYY-MM-DD"))
   /* カレンダーの行数計算 */
   const weekNumber = Math.ceil(endDate.diff(calendarDate, "days") / 7);
 
@@ -152,10 +152,13 @@ const displayMonth = computed((): string => {
   return currentDate.value.format("YYYY[年]M[月]");
 });
 
+const holidays = computed((): JapaneseHolidays.Holiday[] => {
+  return getMonthHolidays();
+});
+
 watch(selected, (cr, prev) => {
   emits("selectedDate", selected.value.format("YYYY-MM-DD"));
 });
-const holidays = getMonthHolidays();
 </script>
 
 <template>
@@ -204,7 +207,7 @@ const holidays = getMonthHolidays();
             <div v-if="!isActiveDate(day)">-</div>
             <div v-else-if="isHoliday(day, getYoubi(index))" class="calendar_value_holiday">
               <p>休</p>
-              <p class="holiday_name">{{getHoliday(day.get("month"), day.get("date")).name}}</p>
+              <p class="holiday_name">{{getHoliday(day.get("month") + 1, day.get("date")).name}}</p>
             </div>
             <div v-else class="calendar_value_active">●</div>
           </div>
