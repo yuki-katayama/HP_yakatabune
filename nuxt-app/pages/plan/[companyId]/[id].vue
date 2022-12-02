@@ -9,6 +9,7 @@ const route = useRoute();
 const companyId = Number(route.params.companyId);
 const planId = Number(route.params.id);
 const taxRate = 0.1; // 10%
+const week = ["日", "月", "火", "水", "木", "金", "土"];
 const plan = ref<Plan>();
 const reserve = ref<Reserve>({
   date: new Date(),
@@ -37,14 +38,58 @@ const sumNum = computed(() => {
   );
 });
 
+const dispalyDate = computed(() => {
+  return (
+    (reserve.value!.date.getMonth() + 1) + '月' +
+    reserve.value!.date.getDate() + '日' +
+    " (" + week[reserve.value!.date.getDay()] + ")"
+  );
+});
+
+const onSelectedDate = (yyyymmdd: string) => {
+  reserve.value.date = new Date(yyyymmdd);
+}
+
 onBeforeMount(() => {
   console.log("plan => beforeMounted");
 });
 
 onMounted(() => {
   console.log("plan => mounted");
+  window.addEventListener("click", onClick)
+  window.addEventListener("scroll", getScroll)
   isCorrectPlan();
 });
+
+onBeforeUnmount(() => {
+  window.removeEventListener("click", onClick)
+  window.removeEventListener("scroll", getScroll)
+});
+
+const onClick = () => {
+  console.log("all listner")
+  // const calendar = document.getElementsByClassName("calendar_panel")[1];
+  // calendar!.addEventListener('click',function(){ // ②
+  //     console.log(`calendarがクリックされました！`); // ③
+  // });
+  // if (57 < window.scrollY) {
+  //   // elem.style.top = '57px'
+  // } else {
+  //   // elem.style.top = 'unset'
+  // }
+}
+
+
+const getScroll = () => {
+  /* 予約フォームの高さを固定 */
+  let elem = document.getElementById("reserve");
+  if (57 < window.scrollY) {
+    // elem.style.top = '57px'
+  } else {
+    // elem.style.top = 'unset'
+  }
+  console.log(window.scrollY);
+}
 
 const getCompaniesToPlans = (): CompanyToPlan[] => {
   return companiesToPlasnsJson;
@@ -93,115 +138,122 @@ const isCorrectPlan = () => {
       > 屋形船詳細
     </div>
     <h3 class="title">{{ plan!.name }}</h3>
-    <figure>
-      <img :src="plan!.imagePath" style="width: 100%" />
-    </figure>
-    <table>
-      <tbody>
-        <tr>
-          <th>所要時間</th>
-          <td>{{ plan!.requiredTime }}</td>
-        </tr>
-        <tr>
-          <th>周遊コース</th>
-          <td>{{ plan!.tourCourse }}</td>
-        </tr>
-        <tr>
-          <th>料金</th>
-          <td>
-            <div class="price">
-              <div class="price_row">
-                <label>大人</label>
-                <p>¥ {{ plan!.price.adult }}</p>
+    <div class="content">
+      <figure>
+        <img :src="plan!.imagePath" style="width: 100%" />
+      </figure>
+      <table>
+        <tbody>
+          <tr>
+            <th>所要時間</th>
+            <td>{{ plan!.requiredTime }}</td>
+          </tr>
+          <tr>
+            <th>周遊コース</th>
+            <td>{{ plan!.tourCourse }}</td>
+          </tr>
+          <tr>
+            <th>料金</th>
+            <td>
+              <div class="price">
+                <div class="price_row">
+                  <label>大人</label>
+                  <p>¥ {{ plan!.price.adult }}</p>
+                </div>
+                <div class="price_row">
+                  <label>中高生</label>
+                  <p>¥ {{ plan!.price.middle }}</p>
+                </div>
               </div>
-              <div class="price_row">
-                <label>中高生</label>
-                <p>¥ {{ plan!.price.middle }}</p>
+              <div class="price">
+                <div class="price_row">
+                  <label>小学生</label>
+                  <p>¥ {{ plan!.price.elementary }}</p>
+                </div>
+                <div class="price_row">
+                  <label>幼児</label>
+                  <p>¥ {{ plan!.price.baby }}</p>
+                </div>
               </div>
-            </div>
-            <div class="price">
-              <div class="price_row">
-                <label>小学生</label>
-                <p>¥ {{ plan!.price.elementary }}</p>
-              </div>
-              <div class="price_row">
-                <label>幼児</label>
-                <p>¥ {{ plan!.price.baby }}</p>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>出航時間</th>
-          <td>
-            {{ plan!.departureTime }}
-          </td>
-        </tr>
-        <tr>
-          <th>外観</th>
-          <td>
-            {{ plan!.appearance }}
-          </td>
-        </tr>
-        <tr>
-          <th>席タイプ</th>
-          <td>
-            {{ plan!.seat }}
-          </td>
-        </tr>
-        <tr>
-          <th>デッキ</th>
-          <td v-if="plan!.deck">あり</td>
-          <td v-else>なし</td>
-        </tr>
-        <tr>
-          <th>Wi-Fi</th>
-          <td v-if="plan!.wifi">あり</td>
-          <td v-else>なし</td>
-        </tr>
-        <tr>
-          <th>アレルギー対応</th>
-          <td v-if="plan!.allergySupport">あり</td>
-          <td v-else>なし</td>
-        </tr>
-        <tr>
-          <th>トイレタイプ</th>
-          <td>{{ plan!.toilet }}</td>
-        </tr>
-        <tr>
-          <th>料理コース内容</th>
-          <td>
-            <p>{{ plan!.cuisine.explain }}</p>
-            <p>
-              <figure>
-                <img :src="plan!.cuisine.imagePath" style="width: 100%" />
-              </figure>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <th>集合場所</th>
-          <td>{{ plan!.place }}</td>
-        </tr>
-        <tr>
-          <th>注意事項</th>
-          <td>{{ plan!.notes }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="reserve">
+            </td>
+          </tr>
+          <tr>
+            <th>出航時間</th>
+            <td>
+              {{ plan!.departureTime }}
+            </td>
+          </tr>
+          <tr>
+            <th>外観</th>
+            <td>
+              {{ plan!.appearance }}
+            </td>
+          </tr>
+          <tr>
+            <th>席タイプ</th>
+            <td>
+              {{ plan!.seat }}
+            </td>
+          </tr>
+          <tr>
+            <th>デッキ</th>
+            <td v-if="plan!.deck">あり</td>
+            <td v-else>なし</td>
+          </tr>
+          <tr>
+            <th>Wi-Fi</th>
+            <td v-if="plan!.wifi">あり</td>
+            <td v-else>なし</td>
+          </tr>
+          <tr>
+            <th>アレルギー対応</th>
+            <td v-if="plan!.allergySupport">あり</td>
+            <td v-else>なし</td>
+          </tr>
+          <tr>
+            <th>トイレタイプ</th>
+            <td>{{ plan!.toilet }}</td>
+          </tr>
+          <tr>
+            <th>料理コース内容</th>
+            <td>
+              <p>{{ plan!.cuisine.explain }}</p>
+              <p>
+                <figure>
+                  <img :src="plan!.cuisine.imagePath" style="width: 100%" />
+                </figure>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <th>集合場所</th>
+            <td>{{ plan!.place }}</td>
+          </tr>
+          <tr>
+            <th>注意事項</th>
+            <td>{{ plan!.notes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="reserve">
       <h4 class="title">予約選択</h4>
-      <div class="calendar">
-        <div class="calendar_output">
+      <div id="calendar">
+        <div class="output">
           <label>ご利用日</label>
-          <p>11月21日</p>
+          <div class="display">
+            <p>{{dispalyDate}}</p>
+            <figure>
+              <img src="/icons/down.svg" style="width: 100%" />
+            </figure>
+          </div>
         </div>
         <div class="calendar_panel">
-          <Calendar />
+          <Calendar  @selectedDate="onSelectedDate" />
         </div>
       </div>
       <div class="people">
-        <div class="people_output">
+        <div class="output">
           <label>人数</label>
           <div class="display">
             <p>✖︎</p>

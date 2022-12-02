@@ -1,0 +1,8 @@
+@import "../setting/config";
+@import "../function/breakpoints";
+
+@mixin mq($breakpoint) {
+	@media #{breakpoints($breakpoint)} {
+        @content;
+    }
+}

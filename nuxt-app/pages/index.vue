@@ -181,7 +181,7 @@ const companyFilter = (): void => {
         </div>
         <button>
           <figure class="search_icon" @click="companyFilter">
-            <img src="icons/search.svg" style="width: 100%" />
+            <img src="/icons/search.svg" style="width: 100%" />
           </figure>
         </button>
       </article>

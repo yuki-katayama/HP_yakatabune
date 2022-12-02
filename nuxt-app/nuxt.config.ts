@@ -17,5 +17,6 @@ export default defineNuxtConfig({
     "@/assets/base/_header.scss",
     "@/assets/base/_reset.scss",
     "@/assets/module/_pankuzu.scss",
+    "@/assets/module/_calendar.scss",
   ],
 });

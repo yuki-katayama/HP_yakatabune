@@ -18,3 +18,9 @@ $util: #252c5f;
 $util2: #eb5656;
 $calendar: #f3ad3d;
 $table-header: #eae7da;
+
+// フォント
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;700;900&family=Zen+Kurenaido&display=swap');
+body {
+	font-family: 'Noto Sans JP', sans-serif;
+}

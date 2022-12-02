@@ -68,12 +68,6 @@ export interface SearchInput {
   };
 }
 
-export interface Event {
-  target: {
-    checked: boolean;
-  };
-}
-
 export interface Reserve {
   date: Date;
   num: {
@@ -83,3 +77,9 @@ export interface Reserve {
     baby: number;
   };
 }
+
+// export interface Calendar {
+//   day: number;
+//   month: number;
+//   year: number;
+// }

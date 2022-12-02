@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onBeforeUnmount, onMounted } from "vue";
-import { Event, SearchInput, Tag } from "models/models";
+import { SearchInput, Tag } from "models/models";
 
 interface Emits {
   (e: "changeIsOptionbar", type: boolean): void;
@@ -39,7 +39,7 @@ const onCloseOptionbar = (e: MouseEvent) => {
   }
 };
 
-const onCheckBox = (event: Event, tagId: number) => {
+const onCheckBox = (event: any, tagId: number) => {
   if (event.target.checked) {
     props.search.options.tagIdList.push(tagId);
   } else {

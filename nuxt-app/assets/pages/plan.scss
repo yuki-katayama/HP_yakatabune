@@ -1,23 +1,78 @@
 @import "../setting/config";
+@import "../mixin/mq.scss";
 @import "../mixin/title.scss";
+
+#plan {
+	.output {
+		padding: 1rem;
+		font-size: 1.5rem;
+		display: flex;
+		height: 3rem;
+		margin-bottom: 1rem;
+		align-items: center;
+		justify-content: space-between;
+		font-weight: 600;
+		.display {
+		  display: flex;
+		  border: solid 1px $border;
+		  width: 70%;
+		  justify-content: space-between;
+		  padding: 0 2rem;
+		  figure {
+			text-align: right;
+			width: 19px;
+		  }
+		}
+	}
+}
 
 #plan {
   @extend .common-container;
   position: relative;
-  figure {
-    width: 50%;
-  }
   .title {
     @include title;
     margin-bottom: 2rem;
   }
-  .reserve {
+  .content {
+    width: 50%;
+    table {
+      width: 100%;
+      font-weight: 600;
+      margin-top: 4rem;
+      th,
+      td {
+        border: 1px solid $border;
+        padding: 1rem 0.5rem;
+      }
+      th {
+        background-color: $table-header;
+      }
+      td {
+        figure {
+          width: 50%;
+        }
+      }
+      .price {
+        display: flex;
+        &_row {
+          display: flex;
+          width: 40%;
+          label {
+            width: 30%;
+          }
+          p {
+            color: $util2;
+          }
+        }
+      }
+    }
+  }
+  #reserve {
     position: fixed;
     width: 40%;
-    min-width: 150px;
     background-color: $white;
     top: 11rem;
-    right: 4rem;
+    left: 54vw;
     padding-bottom: 2rem;
     .title {
       display: flex;
@@ -27,38 +82,20 @@
       height: 5rem;
       padding: 0.5rem;
     }
-    .calendar {
+    #calendar {
       border-bottom: 1px solid $border;
       &_output {
         display: flex;
         color: $lightgray;
       }
       &_panel {
+        visibility: hidden;
+        height: 0;
       }
     }
     .people {
       padding-bottom: 2rem;
       border-bottom: solid 1px $border;
-      &_output {
-        padding: 1rem;
-        font-size: 1.5rem;
-        display: flex;
-        height: 3rem;
-        align-items: center;
-        justify-content: space-between;
-        font-weight: 600;
-        .display {
-          display: flex;
-          border: solid 1px $border;
-          width: 50%;
-          justify-content: space-between;
-          padding: 0 2rem;
-          figure {
-            text-align: right;
-            width: 5%;
-          }
-        }
-      }
       &_panel {
         background-color: #bab6b677;
         .row {
@@ -99,7 +136,7 @@
         color: $util2;
       }
     }
-    &_button {
+    .reserve_button {
       margin: 0 auto;
       display: relative;
       text-align: center;
@@ -112,35 +149,16 @@
       }
     }
   }
-  table {
-    width: 50%;
-    font-weight: 600;
-    margin-top: 4rem;
-    th,
-    td {
-      border: 1px solid $border;
-      padding: 1rem 0.5rem;
+}
+
+@include mq(sp) {
+  #plan {
+    .content, #reserve {
+      width: 100%;
     }
-    th {
-      background-color: $table-header;
-    }
-    td {
-      figure {
-        width: 50%;
-      }
-    }
-    .price {
-      display: flex;
-      &_row {
-        display: flex;
-        width: 40%;
-        label {
-          width: 30%;
-        }
-        p {
-          color: $util2;
-        }
-      }
+    #reserve {
+      position: unset;
+      margin-top: 5rem;
     }
   }
 }
