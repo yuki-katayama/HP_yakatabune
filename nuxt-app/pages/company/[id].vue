@@ -119,11 +119,14 @@ const onNavigateToPlan = (planId: number) => {
         class="card"
         @click="onNavigateToPlan(plan.id)"
       >
-        <figure style="width: 50%">
+        <h3 class="sp content_title">
+            {{ plan.name }}
+          </h3>
+        <figure>
           <img :src="plan.imagePath" style="width: 100%" />
         </figure>
         <section class="content">
-          <h3 class="content_title">
+          <h3 class="pc content_title">
             {{ plan.name }}
           </h3>
           <p class="content_subtitle">
