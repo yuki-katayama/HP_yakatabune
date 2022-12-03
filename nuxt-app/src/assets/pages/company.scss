@@ -119,26 +119,27 @@
 }
 
 @include mq(sp) {
-    #company .planlist {
-      .card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        figure {
-          width: 75%;
+  #company .planlist {
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      figure {
+        width: 75%;
+      }
+      .content {
+        width: 100%;
+        &_title {
+          font-size: 1.8rem;
         }
-        .content {
-          width: 100%;
-          &_title {
-            font-size: 1.8rem
-          }
-          &_subtitle {
-            margin: 2rem 0;
-          }
-          .tables, .tags {
-            justify-content: center;
-          }
+        &_subtitle {
+          margin: 2rem 0;
+        }
+        .tables,
+        .tags {
+          justify-content: center;
         }
       }
+    }
   }
 }

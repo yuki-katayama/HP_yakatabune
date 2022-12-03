@@ -4,19 +4,18 @@ import moment from "moment";
 import JapaneseHolidays from "japanese-holidays";
 // import { Calendar } from "models/models";
 
-onMounted(() => {
-});
+onMounted(() => {});
 
 /* 初めの週の日曜日を取得 */
 const getStartDate = () => {
   let date = currentDate.value.clone();
   const youbiNum = date.day();
-  date = date.subtract(youbiNum, "days")
+  date = date.subtract(youbiNum, "days");
   if (date.get("date") > 1 && date.get("date") < 7) {
     /* 日曜日が二日とかになる場合は、一週間前からスタート */
-    date = date.subtract(7, "days")
+    date = date.subtract(7, "days");
   }
-  return date
+  return date;
 };
 
 /* 最後の週の土曜日を取得 */
@@ -32,43 +31,49 @@ const getYoubi = (dayIdx: number): string => {
   return week[dayIdx];
 };
 
-const getMonthHolidays = (): JapaneseHolidays.Holiday[]  => {
-	const holidays = JapaneseHolidays.getHolidaysOf(Number(currentDate.value.format("YYYY")));
+const getMonthHolidays = (): JapaneseHolidays.Holiday[] => {
+  const holidays = JapaneseHolidays.getHolidaysOf(
+    Number(currentDate.value.format("YYYY"))
+  );
   let monthHolidays: JapaneseHolidays.Holiday[] = [];
-	holidays.forEach((holiday: JapaneseHolidays.Holiday) => {
-		if (currentDate.value.get("month") + 1 === holiday.month) {
-			monthHolidays.push(holiday)
-		}
-	});
-	return monthHolidays;
-}
+  holidays.forEach((holiday: JapaneseHolidays.Holiday) => {
+    if (currentDate.value.get("month") + 1 === holiday.month) {
+      monthHolidays.push(holiday);
+    }
+  });
+  return monthHolidays;
+};
 
-const getHoliday =(month: number, day: number): JapaneseHolidays.Holiday | {name: ""}  => {
-  const holiday = holidays.value.find((holiday: JapaneseHolidays.Holiday) =>
-    holiday.month === month && holiday.date === day
-  )
-  console.log(holidays.value, month, day)
+const getHoliday = (
+  month: number,
+  day: number
+): JapaneseHolidays.Holiday | { name: "" } => {
+  const holiday = holidays.value.find(
+    (holiday: JapaneseHolidays.Holiday) =>
+      holiday.month === month && holiday.date === day
+  );
+  console.log(holidays.value, month, day);
   if (holiday === undefined) {
-    return {name: ""}
+    return { name: "" };
   }
-  return holiday
-}
+  return holiday;
+};
 
 const isHoliday = (date: moment.Moment, youbi: string): boolean => {
-  if(JapaneseHolidays.isHoliday(new Date(date.format("YYYY-MM-DD")))) {
+  if (JapaneseHolidays.isHoliday(new Date(date.format("YYYY-MM-DD")))) {
     return true;
-  } else if (youbi === '日') {
+  } else if (youbi === "日") {
     return true;
   }
   return false;
-}
+};
 
 /* 有効な日付かどうかを確認 */
 const isActiveDate = (date: moment.Moment): boolean => {
-  if (currentDate.value.format('YYYY-MM') !== date.format('YYYY-MM')) {
+  if (currentDate.value.format("YYYY-MM") !== date.format("YYYY-MM")) {
     /** 同じ月かどうか */
     return false;
-  } else if (moment().diff(date, 'days') > 0) {
+  } else if (moment().diff(date, "days") > 0) {
     /** 現在の日付よりも前か */
     return false;
   }
@@ -98,12 +103,16 @@ const getCelColor = (youbi: string, date: moment.Moment): any => {
     color = getDateColor(youbi, date);
   } else {
     color = getDateColor(youbi, date);
-    color["background-color"] = "unset"
+    color["background-color"] = "unset";
   }
   /* h以下を0でセットして正しい差分を取得 */
-  const selectedTemp = moment(selected.value).hour(0).minutes(0).second(0).millisecond(0);
+  const selectedTemp = moment(selected.value)
+    .hour(0)
+    .minutes(0)
+    .second(0)
+    .millisecond(0);
   if (selectedTemp.diff(date.format("YYYY-MM-DD")) === 0) {
-    color['background-color'] = "#aaaaaa";
+    color["background-color"] = "#aaaaaa";
   }
   return color;
 };
@@ -119,7 +128,7 @@ const getCalendar = () => {
   for (let week = 0; week < weekNumber; week++) {
     let weekRow: moment.Moment[] = [];
     for (let day = 0; day < 7; day++) {
-      weekRow.push(moment(calendarDate.format("YYYY-MM-DD")))
+      weekRow.push(moment(calendarDate.format("YYYY-MM-DD")));
       calendarDate.add(1, "days");
     }
     calendars.push(weekRow);
@@ -128,15 +137,15 @@ const getCalendar = () => {
 };
 
 const nextMonth = () => {
-	currentDate.value = moment(currentDate.value).add(1, "month");
+  currentDate.value = moment(currentDate.value).add(1, "month");
 };
 
 const prevMonth = () => {
-	currentDate.value = moment(currentDate.value).subtract(1, "month");
+  currentDate.value = moment(currentDate.value).subtract(1, "month");
 };
 
 interface Emits {
-	(e: "selectedDate", yyyymmdd: string): void;
+  (e: "selectedDate", yyyymmdd: string): void;
 }
 
 const emits = defineEmits<Emits>();
@@ -165,16 +174,16 @@ watch(selected, (cr, prev) => {
   <div class="calendar">
     <div class="month">
       <button @click="prevMonth">
-		<figure>
-			<img src="/icons/arrow.svg" style="width: 100%" />
-		</figure>
-	</button>
+        <figure>
+          <img src="/icons/arrow.svg" style="width: 100%" />
+        </figure>
+      </button>
       <h2>カレンダー{{ displayMonth }}</h2>
       <button @click="nextMonth">
-			<figure>
-				<img src="/icons/arrow.svg" style="width: 100%" />
-			</figure>
-		</button>
+        <figure>
+          <img src="/icons/arrow.svg" style="width: 100%" />
+        </figure>
+      </button>
     </div>
     <div class="calendar_input">
       <div class="calendar_weekly">
@@ -205,9 +214,14 @@ watch(selected, (cr, prev) => {
           </div>
           <div class="calendar_value">
             <div v-if="!isActiveDate(day)">-</div>
-            <div v-else-if="isHoliday(day, getYoubi(index))" class="calendar_value_holiday">
+            <div
+              v-else-if="isHoliday(day, getYoubi(index))"
+              class="calendar_value_holiday"
+            >
               <p>休</p>
-              <p class="holiday_name">{{getHoliday(day.get("month") + 1, day.get("date")).name}}</p>
+              <p class="holiday_name">
+                {{ getHoliday(day.get("month") + 1, day.get("date")).name }}
+              </p>
             </div>
             <div v-else class="calendar_value_active">●</div>
           </div>

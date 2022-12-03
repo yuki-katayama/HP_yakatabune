@@ -2,7 +2,7 @@
 @import "../function/breakpoints";
 
 @mixin mq($breakpoint) {
-	@media #{breakpoints($breakpoint)} {
-        @content;
-    }
+  @media #{breakpoints($breakpoint)} {
+    @content;
+  }
 }

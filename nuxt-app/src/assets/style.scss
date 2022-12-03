@@ -1,37 +1,35 @@
 @import "./mixin/mq";
 
 .sp {
-	display: none;
+  display: none;
 }
 .tab {
-	display: none;
+  display: none;
 }
 .pc {
-	display: block;
+  display: block;
 }
 
 @include mq(tab) {
-	.sp {
-	display: none;
-	}
-	.tab {
-	display: block;
-
-	}
-	.pc {
-	display: none;
-	}
+  .sp {
+    display: none;
+  }
+  .tab {
+    display: block;
+  }
+  .pc {
+    display: none;
+  }
 }
 
 @include mq(sp) {
-	.sp {
-	display: block;
-
-	}
-	.tab {
-	display: none;
-	}
-	.pc {
-	display: none;
-	}
+  .sp {
+    display: block;
+  }
+  .tab {
+    display: none;
+  }
+  .pc {
+    display: none;
+  }
 }

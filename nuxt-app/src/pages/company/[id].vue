@@ -120,8 +120,8 @@ const onNavigateToPlan = (planId: number) => {
         @click="onNavigateToPlan(plan.id)"
       >
         <h3 class="sp content_title">
-            {{ plan.name }}
-          </h3>
+          {{ plan.name }}
+        </h3>
         <figure>
           <img :src="plan.imgUrl" style="width: 100%" />
         </figure>

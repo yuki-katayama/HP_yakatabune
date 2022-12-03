@@ -40,15 +40,20 @@ const sumNum = computed(() => {
 
 const dispalyDate = computed(() => {
   return (
-    (reserve.value!.date.getMonth() + 1) + '月' +
-    reserve.value!.date.getDate() + '日' +
-    " (" + week[reserve.value!.date.getDay()] + ")"
+    reserve.value!.date.getMonth() +
+    1 +
+    "月" +
+    reserve.value!.date.getDate() +
+    "日" +
+    " (" +
+    week[reserve.value!.date.getDay()] +
+    ")"
   );
 });
 
 const onSelectedDate = (yyyymmdd: string) => {
   reserve.value.date = new Date(yyyymmdd);
-}
+};
 
 onBeforeMount(() => {
   console.log("plan => beforeMounted");
@@ -56,40 +61,41 @@ onBeforeMount(() => {
 
 onMounted(() => {
   console.log("plan => mounted");
-  onClick()
+  onClick();
   isCorrectPlan();
 });
 
-onBeforeUnmount(() => {
-});
+onBeforeUnmount(() => {});
 
 const onClick = () => {
-  console.log("all listner")
+  console.log("all listner");
   const calendar_input = document.getElementsByClassName("calendar_input")[0];
   const calendar = document.getElementsByClassName("calendar")[0];
-  calendar_input.addEventListener('click',function(){ // ②
-      console.log("カレンダー: カレンダー開閉");
-      const arrow = document.getElementsByClassName("arrow")[0];
-      calendar.classList.toggle("active");
-      arrow.classList.toggle("active");
+  calendar_input.addEventListener("click", function () {
+    // ②
+    console.log("カレンダー: カレンダー開閉");
+    const arrow = document.getElementsByClassName("arrow")[0];
+    calendar.classList.toggle("active");
+    arrow.classList.toggle("active");
   });
   const calendar_display = document.getElementsByClassName("display")[0];
-  calendar_display.addEventListener('click',function(){ // ②
-      console.log("output: カレンダー開閉");
-      const arrow = document.getElementsByClassName("arrow")[0];
-      calendar.classList.toggle("active");
-      arrow.classList.toggle("active");
+  calendar_display.addEventListener("click", function () {
+    // ②
+    console.log("output: カレンダー開閉");
+    const arrow = document.getElementsByClassName("arrow")[0];
+    calendar.classList.toggle("active");
+    arrow.classList.toggle("active");
   });
   const people_display = document.getElementsByClassName("display")[1];
-  people_display.addEventListener('click',function(){ // ②
+  people_display.addEventListener("click", function () {
+    // ②
     console.log("people: 人数欄開閉");
     const people_panel = document.getElementsByClassName("people_panel")[0];
-      const arrow = document.getElementsByClassName("arrow")[1];
-      arrow.classList.toggle("active");
-      people_panel.classList.toggle("active");
+    const arrow = document.getElementsByClassName("arrow")[1];
+    arrow.classList.toggle("active");
+    people_panel.classList.toggle("active");
   });
-}
-
+};
 
 const getScroll = () => {
   /* 予約フォームの高さを固定 */
@@ -100,7 +106,7 @@ const getScroll = () => {
     // elem.style.top = 'unset'
   }
   console.log(window.scrollY);
-}
+};
 
 const getCompaniesToPlans = (): CompanyToPlan[] => {
   return companiesToPlasnsJson;
@@ -253,14 +259,14 @@ const isCorrectPlan = () => {
         <div class="output">
           <label>ご利用日</label>
           <div class="display">
-            <p>{{dispalyDate}}</p>
+            <p>{{ dispalyDate }}</p>
             <figure class="arrow">
               <img src="/icons/down.svg" style="width: 100%" />
             </figure>
           </div>
         </div>
         <div class="calendar_panel">
-          <Calendar  @selectedDate="onSelectedDate" />
+          <Calendar @selectedDate="onSelectedDate" />
         </div>
       </div>
       <div class="people">

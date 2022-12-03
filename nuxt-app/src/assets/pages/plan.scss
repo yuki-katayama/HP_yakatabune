@@ -3,33 +3,33 @@
 @import "../mixin/title.scss";
 
 #plan {
-	.output {
+  .output {
     padding: 0 3rem;
-		font-size: 1.5rem;
-		display: flex;
-		height: 3rem;
-		margin-bottom: 1rem;
-		align-items: center;
-		justify-content: space-between;
-		font-weight: 600;
-		.display {
-		  display: flex;
-		  border: solid 1px $border;
-		  width: 70%;
-		  justify-content: space-between;
-		  padding: 0 2rem;
-		  figure {
-			text-align: right;
-			width: 19px;
+    font-size: 1.5rem;
+    display: flex;
+    height: 3rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    .display {
+      display: flex;
+      border: solid 1px $border;
+      width: 70%;
+      justify-content: space-between;
+      padding: 0 2rem;
+      figure {
+        text-align: right;
+        width: 19px;
       }
-    .arrow {
+      .arrow {
         transition: all 0.5s;
         &.active {
           transform: rotate(180deg);
         }
       }
-		}
-	}
+    }
+  }
 }
 
 #plan {
@@ -107,7 +107,7 @@
         overflow: hidden;
         transition: max-height 0.5s ease;
         background-color: #bab6b677;
-      padding: 0 3rem;
+        padding: 0 3rem;
 
         .row {
           display: flex;
@@ -163,16 +163,17 @@
 }
 
 .calendar.active {
-	max-height: 0px !important;
+  max-height: 0px !important;
 }
 
 .people .people_panel.active {
-	max-height: 0px !important;
+  max-height: 0px !important;
 }
 
 @include mq(sp) {
   #plan {
-    .content, #reserve {
+    .content,
+    #reserve {
       width: 100%;
     }
     #reserve {
