@@ -3,11 +3,7 @@
 .calendar {
 	max-height: 500px;
 	overflow: hidden;
-
-	/* Set our transitions up. */
-	-webkit-transition: max-height 0.8s;
-	-moz-transition: max-height 0.8s;
-	transition: max-height 0.8s;
+	transition: max-height 0.5s;
 
 
 	&_value {
@@ -60,12 +56,4 @@
 		  margin-right: 8px;
 		}
 	  }
-}
-
-.calendar.active {
-	// height: 300vh;
-	// height: 0;
-	max-height: 0px;
-	// overflow-y: hidden;
-	// transform: scaleY(0%);
 }

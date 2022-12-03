@@ -57,13 +57,10 @@ onBeforeMount(() => {
 onMounted(() => {
   console.log("plan => mounted");
   onClick()
-  window.addEventListener("scroll", getScroll)
   isCorrectPlan();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener("click", onClick)
-  window.removeEventListener("scroll", getScroll)
 });
 
 const onClick = () => {
@@ -71,19 +68,26 @@ const onClick = () => {
   const calendar_input = document.getElementsByClassName("calendar_input")[0];
   const calendar = document.getElementsByClassName("calendar")[0];
   calendar_input.addEventListener('click',function(){ // ②
-      console.log("カレンダー閉じる");
+      console.log("カレンダー: カレンダー開閉");
+      const arrow = document.getElementsByClassName("arrow")[0];
       calendar.classList.toggle("active");
+      arrow.classList.toggle("active");
   });
   const calendar_display = document.getElementsByClassName("display")[0];
   calendar_display.addEventListener('click',function(){ // ②
-      console.log("カレンダーオープン");
+      console.log("output: カレンダー開閉");
+      const arrow = document.getElementsByClassName("arrow")[0];
       calendar.classList.toggle("active");
+      arrow.classList.toggle("active");
   });
-  // if (57 < window.scrollY) {
-  //   // elem.style.top = '57px'
-  // } else {
-  //   // elem.style.top = 'unset'
-  // }
+  const people_display = document.getElementsByClassName("display")[1];
+  people_display.addEventListener('click',function(){ // ②
+    console.log("people: 人数欄開閉");
+    const people_panel = document.getElementsByClassName("people_panel")[0];
+      const arrow = document.getElementsByClassName("arrow")[1];
+      arrow.classList.toggle("active");
+      people_panel.classList.toggle("active");
+  });
 }
 
 
@@ -250,7 +254,7 @@ const isCorrectPlan = () => {
           <label>ご利用日</label>
           <div class="display">
             <p>{{dispalyDate}}</p>
-            <figure>
+            <figure class="arrow">
               <img src="/icons/down.svg" style="width: 100%" />
             </figure>
           </div>
@@ -265,7 +269,7 @@ const isCorrectPlan = () => {
           <div class="display">
             <p>✖︎</p>
             <p>{{ sumNum }} 人</p>
-            <figure>
+            <figure class="arrow">
               <img src="/icons/down.svg" style="width: 100%" />
             </figure>
           </div>

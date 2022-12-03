@@ -4,7 +4,7 @@
 
 #plan {
 	.output {
-		padding: 1rem;
+    padding: 0 3rem;
 		font-size: 1.5rem;
 		display: flex;
 		height: 3rem;
@@ -21,7 +21,13 @@
 		  figure {
 			text-align: right;
 			width: 19px;
-		  }
+      }
+    .arrow {
+        transition: all 0.5s;
+        &.active {
+          transform: rotate(180deg);
+        }
+      }
 		}
 	}
 }
@@ -79,11 +85,12 @@
       align-items: center;
       background-color: $util;
       color: $white;
-      height: 5rem;
+      height: 4rem;
       padding: 0.5rem;
     }
     #calendar {
       border-bottom: 1px solid $border;
+      padding: 0 3rem;
       &_output {
         display: flex;
         color: $lightgray;
@@ -94,10 +101,14 @@
       }
     }
     .people {
-      padding-bottom: 2rem;
       border-bottom: solid 1px $border;
       &_panel {
+        max-height: 400px;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
         background-color: #bab6b677;
+      padding: 0 3rem;
+
         .row {
           display: flex;
           padding: 1rem;
@@ -131,7 +142,7 @@
       justify-content: space-between;
       font-weight: 600;
       font-size: 2rem;
-      margin: 2rem 5rem;
+      margin: 1rem 5rem;
       p {
         color: $util2;
       }
@@ -149,6 +160,14 @@
       }
     }
   }
+}
+
+.calendar.active {
+	max-height: 0px !important;
+}
+
+.people .people_panel.active {
+	max-height: 0px !important;
 }
 
 @include mq(sp) {
