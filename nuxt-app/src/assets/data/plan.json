@@ -11,10 +11,10 @@
     "wifi": false,
     "allergySupport": false,
     "toilet": "洋式",
-    "imagePath": "/images/plan.jpg",
+    "imgUrl": "/images/plan.jpg",
     "cuisine": {
       "explain": "a",
-      "imagePath": "/images/cuisine.jpg"
+      "imgUrl": "/images/cuisine.jpg"
     },
     "tourCourse": "東京スカイツリーとお台場周遊コース",
     "price": {
@@ -38,10 +38,10 @@
     "wifi": false,
     "allergySupport": false,
     "toilet": "洋式",
-    "imagePath": "/images/plan.jpg",
+    "imgUrl": "/images/plan.jpg",
     "cuisine": {
       "explain": "a",
-      "imagePath": ""
+      "imgUrl": ""
     },
     "tourCourse": "東京スカイツリーとお台場周遊コース",
     "price": {

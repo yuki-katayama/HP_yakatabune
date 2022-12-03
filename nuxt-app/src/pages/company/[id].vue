@@ -92,16 +92,16 @@ const onNavigateToPlan = (planId: number) => {
   <main id="company">
     <div class="pankuzu"><NuxtLink to="/">TOP</NuxtLink> > 屋形船詳細</div>
     <div class="top">
-      <h2 class="title">{{ company!.name }}</h2>
-      <p class="title_sub">{{ company!.area }}</p>
+      <h2 class="title">{{ company.name }}</h2>
+      <p class="title_sub">{{ company.area }}</p>
       <p class="title_sub">¥ 12,000</p>
       <div class="tags">
-        <template v-for="tag in getTagsListFromCompanyId(company!.id)">
+        <template v-for="tag in getTagsListFromCompanyId(company.id)">
           <p class="tag">{{ tag.name }}</p>
         </template>
       </div>
       <figure>
-        <img src="@/images/company.jpg" style="width: 100%" />
+        <img :src="company.imgUrl" style="width: 100%" />
       </figure>
       <section class="content">
         <h3 class="content_title">
@@ -115,7 +115,7 @@ const onNavigateToPlan = (planId: number) => {
     <div class="planlist">
       <h3 class="title">プラン一覧</h3>
       <article
-        v-for="plan in getPlansListFromCompanyId(company!.id)"
+        v-for="plan in getPlansListFromCompanyId(company.id)"
         class="card"
         @click="onNavigateToPlan(plan.id)"
       >
@@ -123,7 +123,7 @@ const onNavigateToPlan = (planId: number) => {
             {{ plan.name }}
           </h3>
         <figure>
-          <img :src="plan.imagePath" style="width: 100%" />
+          <img :src="plan.imgUrl" style="width: 100%" />
         </figure>
         <section class="content">
           <h3 class="pc content_title">
@@ -172,7 +172,7 @@ const onNavigateToPlan = (planId: number) => {
         <tbody>
           <tr>
             <th>船会社名</th>
-            <td>{{ company!.name }}</td>
+            <td>{{ company.name }}</td>
           </tr>
           <tr>
             <th>電話番号</th>

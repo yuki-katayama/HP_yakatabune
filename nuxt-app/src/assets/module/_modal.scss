@@ -1,0 +1,11 @@
+@import "../setting/config";
+
+.modal {
+	.overlay {
+		position: absolute;
+		width: 100vw;
+		inset: 0;
+		background: $lightgray;
+		opacity: 0.5;
+	}
+}

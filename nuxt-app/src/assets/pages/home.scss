@@ -4,8 +4,7 @@
   .bar {
     position: relative;
     height: 10rem;
-    width: 100vw;
-    border-bottom: solid 2px $border;
+    box-shadow: 0px 1px 4px $border;
     &_container {
       position: absolute;
       height: 6rem;
@@ -50,21 +49,26 @@
         border-radius: 5px;
         width: 30%;
       }
-      .buttons > button {
-        text-align: center;
-        width: 50%;
+      .buttons  {
+        width: 30%;
+        & > button {
+          text-align: center;
+          width: 50%;
+        }
+        .search_icon {
+          width: 80%;
+        }
       }
-      .search_icon {
-        width: 80%;
       }
-    }
   }
   .container {
-    width: 100vw;
     margin: 2rem;
     display: flex;
     flex-flow: row wrap;
     .card {
+      img {
+            border-radius: 5px;
+      }
       width: 15vw;
       margin: 2rem;
       &_tags {

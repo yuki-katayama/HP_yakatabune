@@ -2,6 +2,7 @@
 // 環境変数を使用してビルド後に指定する必要があるプライベートまたはパブリック トークン。
 import { fileURLToPath } from "url";
 export default defineNuxtConfig({
+  srcDir: 'src/',
   runtimeConfig: {
     // サーバーサイドで使用
     apiSecret: "123",

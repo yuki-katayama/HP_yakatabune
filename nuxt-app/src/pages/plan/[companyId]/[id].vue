@@ -56,7 +56,7 @@ onBeforeMount(() => {
 
 onMounted(() => {
   console.log("plan => mounted");
-  window.addEventListener("click", onClick)
+  onClick()
   window.addEventListener("scroll", getScroll)
   isCorrectPlan();
 });
@@ -68,10 +68,17 @@ onBeforeUnmount(() => {
 
 const onClick = () => {
   console.log("all listner")
-  // const calendar = document.getElementsByClassName("calendar_panel")[1];
-  // calendar!.addEventListener('click',function(){ // ②
-  //     console.log(`calendarがクリックされました！`); // ③
-  // });
+  const calendar_input = document.getElementsByClassName("calendar_input")[0];
+  const calendar = document.getElementsByClassName("calendar")[0];
+  calendar_input.addEventListener('click',function(){ // ②
+      console.log("カレンダー閉じる");
+      calendar.classList.toggle("active");
+  });
+  const calendar_display = document.getElementsByClassName("display")[0];
+  calendar_display.addEventListener('click',function(){ // ②
+      console.log("カレンダーオープン");
+      calendar.classList.toggle("active");
+  });
   // if (57 < window.scrollY) {
   //   // elem.style.top = '57px'
   // } else {
@@ -140,7 +147,7 @@ const isCorrectPlan = () => {
     <h3 class="title">{{ plan!.name }}</h3>
     <div class="content">
       <figure>
-        <img :src="plan!.imagePath" style="width: 100%" />
+        <img :src="plan!.imgUrl" style="width: 100%" />
       </figure>
       <table>
         <tbody>
@@ -220,7 +227,7 @@ const isCorrectPlan = () => {
               <p>{{ plan!.cuisine.explain }}</p>
               <p>
                 <figure>
-                  <img :src="plan!.cuisine.imagePath" style="width: 100%" />
+                  <img :src="plan!.cuisine.imgUrl" style="width: 100%" />
                 </figure>
               </p>
             </td>
