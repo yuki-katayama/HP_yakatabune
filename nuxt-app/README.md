@@ -53,4 +53,15 @@ npx prettier --write .
 yarn prettier --write .
 ```
 
+```
+cloudforMationのcdkを作成
+* npx serverless deploy
+
+lambdaへデプロイ
+* aws cloudformation deploy --template-file cdn.yml --stack-name nuxt-distribution --parameter-overrides NuxtSsrEnginDomain=f6326q6emmpe7gajuysuaxbtou0ngdch.lambda-url.ap-northeast-1.on.aws
+
+S3へデプロイ
+* aws s3 sync --delete .output/public s3://nuxt3-sample-public-bucket-aaaaa
+```
+
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

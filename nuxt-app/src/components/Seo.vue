@@ -5,6 +5,6 @@ const appConfig: any = useAppConfig();
 <template>
   <Head>
     <Title>{{ appConfig.title }}</Title>
-    <Meta name="description" :content="`{{appConfig.title}}`" />
+    <Meta name="description" :content="appConfig.title" />
   </Head>
 </template>

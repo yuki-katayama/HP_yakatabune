@@ -3,6 +3,9 @@
 import { fileURLToPath } from "url";
 export default defineNuxtConfig({
   srcDir: "src/",
+  nitro: {
+    preset: 'aws-lambda',
+  },
   runtimeConfig: {
     // サーバーサイドで使用
     apiSecret: "123",

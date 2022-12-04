@@ -8,3 +8,6 @@ node_modules
 dist
 yarn.lock
 package-lock.json
+.serverless
+cdn.yml
+serverless.yml
