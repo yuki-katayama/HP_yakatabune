@@ -27,16 +27,12 @@ onBeforeUnmount(() => {
 const isOptionArea = ref<boolean>(false);
 const styleActiveOptionButton = "border-bottom: solid 2px #eb5656;";
 
-const optionbar = ref<HTMLDivElement>(); // 対象の要素
 const onCloseOptionbar = (e: MouseEvent) => {
-  // [対象の要素]が[クリックされた要素]を含まない場合
-  if (
-    e.target instanceof Node &&
-    !optionbar.value?.contains(e.target) &&
-    e.target.id !== "optionbarArea"
-  ) {
-    emits("changeIsOptionbar", false);
-  }
+  /* オプションバーの閉じるタイミング */
+  if (!e.path.find((tag: any) =>
+    tag.className === "optionbar" || tag.id === "optionbarArea")
+  )
+  emits("changeIsOptionbar", false);
 };
 
 const onCheckBox = (event: any, tagId: number) => {
