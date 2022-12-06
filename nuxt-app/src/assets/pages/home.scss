@@ -1,4 +1,5 @@
 @import "../setting/config";
+@import "../mixin/mq";
 
 #home {
   .bar {
@@ -86,6 +87,36 @@
           border-radius: 2px;
         }
       }
+    }
+  }
+}
+
+@include mq(sp) {
+  #home {
+    .bar {
+      &_row {
+        display: flex;
+      }
+      &_container {
+        width: 100vw;
+        height: 100%;
+        display: block;
+        border: unset;
+        border-bottom: solid 1px $border;
+        .buttons,
+        input,
+        select {
+          width: 49%;
+        }
+      }
+    }
+    .container {
+        display: block;
+        margin: unset;
+        .card {
+          width: 100vw;
+          margin: auto;
+        }
     }
   }
 }
