@@ -1,3 +1,0 @@
-@function breakpoints($breakpoint) {
-  @return map-get($breakpoints, $breakpoint);
-}

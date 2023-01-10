@@ -1,0 +1,63 @@
+// settingフォルダの変数を読み込みます
+@use "../setting"as *;
+
+// flexのスタイルを定義します
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-just-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-align-items {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-just-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+@mixin flex-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@mixin flex-between-align-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column-just-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin flex-unit {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: space-between;
+}

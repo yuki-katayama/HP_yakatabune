@@ -1,0 +1,48 @@
+//フォントに関する変数を登録します
+@import url('https://fonts.googleapis.com/css2?family=Asap&family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Roboto&family=Sawarabi+Mincho&display=swap');
+
+@font-face {
+  font-family: 'Torrent-Regular';
+  src: url('../package/font-torrent/Torrent-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Torrent-Medium';
+  src: url('../package/font-torrent/Torrent-Medium.otf') format('opentype');
+}
+
+$font-family-common: "dnp-shuei-gothic-gin-std",sans-serif;
+$font-family-torrent-regular: 'Torrent-Regular', sans-serif;
+$font-family-torrent-medium: 'Torrent-Medium', sans-serif;
+$font-family-mincho: 'Sawarabi Mincho', serif;
+
+body {
+  font-family: $font-family-common;
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+
+.font-torrent-regular {
+  font-family: $font-family-torrent-regular;
+  font-weight: 400;
+}
+
+.font-torrent-medium {
+  font-family: $font-family-torrent-medium;
+  font-weight: 400;
+}
+
+// html {
+//   font-family: $common-font;
+// }
+// body {
+// h1 {@include text-xl;}
+// h2 {@include text-xl;}
+// h3 {@include text-l;}
+// p {@include text-m;}
+// a, div, li, dt, dd, span {@include text-m;}
+// }
+// b, strong, .bold {@include text-bold;}
+// pre {font-family: $common-font;}

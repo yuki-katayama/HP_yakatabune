@@ -1,0 +1,23 @@
+//色に関する変数を登録します
+$content-color01: #FFFFFF;
+$content-color02: #000000;
+$content-color03: #0E256C;
+$content-color04: #707070;
+
+$util-color: #9F9044;
+
+$background-color-body: #BAAC77;
+$background-color-footer: #F7F6E5;
+
+/* text-color */
+.text-white {
+  color: $content-color01;
+}
+
+.text-black {
+  color: $content-color02;
+}
+
+.text-blue {
+  color: $content-color03;
+}

@@ -1,0 +1,139 @@
+//各ファイルは必ず登録済みの変数を最初に読み込みます
+//as *で読み込みファイル名を省略することができます
+@use "../global"as *;
+
+//トップセクションのモジュールの設定を定義します
+
+#home {
+	figure {
+		@include w-100;
+	}
+	#top, #about, #guide, #for_beginner, #ride_type, .content > figure  {
+		border-bottom: solid 5px $util-color;
+	}
+	#top {
+		@include mq($pc) {
+			margin-top: $height-header-pc;
+		}
+		@include mq($sp) {
+			margin-top: $height-header-sp;
+		}
+		figure {
+			max-height: 100vh;
+			height: 60rem;
+		}
+		section {
+			padding: 14rem 25.8rem 0;
+			line-height: 3.5rem;
+			h2 {
+				font-size: 2.2rem;
+				font-weight: 600;
+				margin-bottom: 5rem;
+				letter-spacing: 0.24rem;;
+			}
+			p {
+				font-size: 1.8rem;
+			}
+			height: 49.6rem;
+			border-top: solid 5px $util-color;
+		}
+	}
+	#about {
+		padding: 3.9rem 0 13.2rem;
+		.p-caption {
+			font-size: 1.5rem;
+			margin: 3.4rem 0 4.8rem 11.6rem;
+		}
+		.container {
+			margin: 0 1.2rem;
+			section {
+				width: 33%;
+				margin: 0 1.2rem;
+				figure {
+					border-radius: 20px;
+				}
+				h3 {
+					@include w-50;
+					@include drop-shadow-m;
+					@include flex-center;
+					background: $content-color01;
+					height: 10%;
+					font-size: 1.6rem;
+					border-radius: 2rem;
+					transform: translate(0, -50%);
+					margin: auto;
+				}
+				p {
+					padding: 0 2rem;
+					margin-top: 1.37rem;
+					font-size: 1.6rem;
+					letter-spacing: 0.1rem;;
+					line-height: 2.6rem;
+				}
+			}
+
+		}
+	}
+	#guide {
+		position: relative;
+		padding-top: 12.4rem;
+		.p-to_detail {
+			position: absolute;
+			@include position-absolute-tr(12.4rem, 6.6rem);
+			font-size: 2.4rem;
+			font-weight: 600;
+		}
+		figure {
+			padding: 0 24rem;
+		}
+	}
+	#for_beginner {
+		padding: 12.4rem 0;
+		p {
+			font-size: 1.8rem;
+			margin: 4.3rem 26rem 0;
+			line-height: 3.2rem;
+		}
+	}
+	#ride_type {
+		padding: 15rem 0 16.6rem;
+		section {
+			@include w-50;
+			margin-top: 2rem;
+			h3 {
+				@include flex-center;
+				font-size: 1.6rem;
+				width: 11.2rem;
+				height: 11.2rem;
+				margin: auto;
+				margin-bottom: -1rem;
+				transform: translate(0, -50%);
+				border: solid 1px $content-color04;
+				background: $content-color01;
+				border-radius: 100%;
+				text-align: center;
+			}
+			p {
+				font-size: 1.4rem;
+				padding: 0 10.5rem;
+				letter-spacing: 0.14rem;
+				line-height: 2.1rem;
+			}
+			.p-button_wrapper {
+				width: 100%;
+				text-align: center;
+				button {
+					font-size: 1.3rem;
+					background-color: $util-color;
+					width: 19rem;
+					height: 4rem;
+					margin-top: 4.3rem;
+					border-radius: 2rem;
+				}
+			}
+		}
+	}
+	.content > figure {
+		width: 100%;
+	}
+}

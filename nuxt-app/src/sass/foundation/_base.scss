@@ -1,0 +1,22 @@
+//各ファイルは必ず登録済みの変数を最初に読み込みます
+//as *で読み込みファイル名を省略することができます
+@use "../global"as *;
+
+//baseの設定を定義します
+
+// 1rem = 10px, pc: 1920px、sp: 750pxを想定
+// scroll-padding-topはアンカーリンク遷移時に少し上にする
+html {
+	position: relative;
+	@include mq($pc) {
+		font-size: 0.833334vw;
+		scroll-padding-top: $height-header-pc;
+	}
+	@include mq($sp) {
+		font-size: 1.3333vw;
+	}
+}
+
+body {
+	font-weight: 400;
+}

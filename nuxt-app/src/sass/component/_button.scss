@@ -1,0 +1,37 @@
+//各ファイルは必ず登録済みの変数を最初に読み込みます
+//as *で読み込みファイル名を省略することができます
+@use "../global"as *;
+
+//ボタンの設定を定義します
+
+/* button */
+.button {
+	@include w-100;
+	@include h-100;
+	position: relative;
+	text-align: center;
+	letter-spacing: 0.4rem;
+	border-radius: 5px;
+	cursor: pointer;
+	&:before, &:after {
+		// content: '参加応募はこちら';
+		@include position-absolute-tl;
+		@include flex-center;
+		@include w-100;
+		@include h-100;
+	}
+	&:before {
+		background: linear-gradient(to right, $button-right-color 40%, $button-right-color 100%);
+		border-radius: 5px;
+	}
+	&:after {
+		transition: ease 0.4s;
+		background: linear-gradient(to right, $button-left-color 40%, $button-right-color 100%);
+	    border-radius: 5px;
+	}
+	&:hover {
+		&:after {
+			opacity: 0;
+		}
+	}
+}

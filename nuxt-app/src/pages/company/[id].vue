@@ -1,95 +1,95 @@
 <script setup lang="ts">
-import { Company, CompanyToTag, CompanyToPlan, Tag, Plan } from "models/models";
-import { ref, onMounted, onBeforeMount } from "vue";
-import companiesJson from "@/assets/data/company";
-import plansJson from "@/assets/data/plan";
-import companiesToTagsJson from "@/assets/data/company-to-tag";
-import companiesToPlansJson from "@/assets/data/company-to-plan";
-import tagsJson from "@/assets/data/company-tag";
+// import { Company, CompanyToTag, CompanyToPlan, Tag, Plan } from "models/models";
+// import { ref, onMounted, onBeforeMount } from "vue";
+// import companiesJson from "@/assets/data/company";
+// import plansJson from "@/assets/data/plan";
+// import companiesToTagsJson from "@/assets/data/company-to-tag";
+// import companiesToPlansJson from "@/assets/data/company-to-plan";
+// import tagsJson from "@/assets/data/company-tag";
 
-const route = useRoute();
+// const route = useRoute();
 
-const plan_tags: string[] = ["天ぷら", "飲み放題"];
-const companyId: number = Number(route.params.id);
-const company = ref<Company>();
+// const plan_tags: string[] = ["天ぷら", "飲み放題"];
+// const companyId: number = Number(route.params.id);
+// const company = ref<Company>();
 
-onBeforeMount(() => {
-  console.log("company => beforeMounted");
-  company.value = getCompany(companyId);
-});
-onMounted(() => {
-  console.log(company);
-  console.log("company => mounted");
-});
+// onBeforeMount(() => {
+//   console.log("company => beforeMounted");
+//   company.value = getCompany(companyId);
+// });
+// onMounted(() => {
+//   console.log(company);
+//   console.log("company => mounted");
+// });
 
-const getCompany = (companyId: number) => {
-  return companiesJson.find((company: Company) => company.id === companyId);
-};
+// const getCompany = (companyId: number) => {
+//   return companiesJson.find((company: Company) => company.id === companyId);
+// };
 
-const getTags = (): Tag[] => {
-  return tagsJson;
-};
+// const getTags = (): Tag[] => {
+//   return tagsJson;
+// };
 
-const getPlans = (): Plan[] => {
-  return plansJson;
-};
+// const getPlans = (): Plan[] => {
+//   return plansJson;
+// };
 
-const getCompaniesToTags = (): CompanyToTag[] => {
-  return companiesToTagsJson;
-};
+// const getCompaniesToTags = (): CompanyToTag[] => {
+//   return companiesToTagsJson;
+// };
 
-const getCompaniesToPlans = (): CompanyToPlan[] => {
-  return companiesToPlansJson;
-};
+// const getCompaniesToPlans = (): CompanyToPlan[] => {
+//   return companiesToPlansJson;
+// };
 
-/**
- * @param companyId
- * @return 会社IDに属するプランのリスト
- */
-const getPlansListFromCompanyId = (companyId: number): Plan[] => {
-  let plansList: Plan[] = [];
-  const toPlanList = getCompaniesToPlans().filter(
-    (to: CompanyToPlan) => to.companyId === companyId
-  );
-  toPlanList.forEach((to: CompanyToPlan) => {
-    getPlans().forEach((plan: Plan) => {
-      if (to.planId === plan.id) {
-        plansList.push(plan);
-      }
-    });
-  });
-  return plansList;
-};
+// /**
+//  * @param companyId
+//  * @return 会社IDに属するプランのリスト
+//  */
+// const getPlansListFromCompanyId = (companyId: number): Plan[] => {
+//   let plansList: Plan[] = [];
+//   const toPlanList = getCompaniesToPlans().filter(
+//     (to: CompanyToPlan) => to.companyId === companyId
+//   );
+//   toPlanList.forEach((to: CompanyToPlan) => {
+//     getPlans().forEach((plan: Plan) => {
+//       if (to.planId === plan.id) {
+//         plansList.push(plan);
+//       }
+//     });
+//   });
+//   return plansList;
+// };
 
-/**
- * @param companyId
- * @return 会社IDに属するタグのリスト
- */
-const getTagsListFromCompanyId = (companyId: number): Tag[] => {
-  let tagsList: Tag[] = [];
-  const toTagList = getCompaniesToTags().filter(
-    (to: CompanyToTag) => to.companyId === companyId
-  );
-  toTagList.forEach((to: CompanyToTag) => {
-    getTags().forEach((tag: Tag) => {
-      if (to.tagId === tag.id) {
-        tagsList.push(tag);
-      }
-    });
-  });
-  return tagsList;
-};
+// /**
+//  * @param companyId
+//  * @return 会社IDに属するタグのリスト
+//  */
+// const getTagsListFromCompanyId = (companyId: number): Tag[] => {
+//   let tagsList: Tag[] = [];
+//   const toTagList = getCompaniesToTags().filter(
+//     (to: CompanyToTag) => to.companyId === companyId
+//   );
+//   toTagList.forEach((to: CompanyToTag) => {
+//     getTags().forEach((tag: Tag) => {
+//       if (to.tagId === tag.id) {
+//         tagsList.push(tag);
+//       }
+//     });
+//   });
+//   return tagsList;
+// };
 
-const onNavigateToPlan = (planId: number) => {
-  navigateTo({
-    path: "/plan/" + route.params.id + "/" + planId,
-  });
-};
+// const onNavigateToPlan = (planId: number) => {
+//   navigateTo({
+//     path: "/plan/" + route.params.id + "/" + planId,
+//   });
+// };
 </script>
 
 <template>
   <Seo />
-  <main id="company">
+  <!-- <main id="company">
     <div class="pankuzu"><NuxtLink to="/">TOP</NuxtLink> > 屋形船詳細</div>
     <div class="top">
       <h2 class="title">{{ company.name }}</h2>
@@ -197,5 +197,5 @@ const onNavigateToPlan = (planId: number) => {
         </tbody>
       </table>
     </div>
-  </main>
+  </main> -->
 </template>

@@ -1,0 +1,39 @@
+//各ファイルは必ず登録済みの変数を最初に読み込みます
+//as *で読み込みファイル名を省略することができます
+@use "../global"as *;
+
+//フッターのレイアウトの設定を定義します
+
+
+footer {
+	// @include flex-center;
+	display: flex;
+	font-size: 1.8rem;
+	line-height: 4rem;
+	padding: 5.6rem 11.6rem 0 12.7rem;
+	@include mq($pc) {
+		height: $height-footer-pc;
+	}
+	.column {
+		&1 {
+			margin-right: 4.9rem;
+		}
+		&2 {
+			margin-right: 44.2rem;
+		}
+	}
+	address {
+		h2 {
+			font-size: 2.5rem;
+			margin-bottom: 7.9rem;
+			letter-spacing: 0.3rem;
+		}
+		h3 {
+			font-size: 2rem;
+			margin-bottom: 2.7rem;
+		}
+		p {
+			font-size: 1.7rem;
+		}
+	}
+}

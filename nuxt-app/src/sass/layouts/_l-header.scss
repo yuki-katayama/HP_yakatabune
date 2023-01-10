@@ -1,0 +1,32 @@
+//各ファイルは必ず登録済みの変数を最初に読み込みます
+//as *で読み込みファイル名を省略することができます
+@use "../global"as *;
+
+//ヘッダーのレイアウトの設定を定義します
+
+header {
+	@include position-fixed-tl0;
+	@include w-100;
+	@include drop-shadow-xl;
+	z-index: 9999;
+	background-color: $util-color;
+	height: $height-header-pc;
+	display: fixed;
+
+	.l-search {
+		background-color: $util-color;
+		height: 5rem;
+	}
+	.l-menu {
+		display: flex;
+		padding: 0 3.4rem 0 13.7rem;
+		background-color: $content-color01;
+		height: 6rem;
+	}
+}
+
+// @include mq($sp) {
+// 	#header {
+// 		height: $height-header-sp;
+// 	}
+// }

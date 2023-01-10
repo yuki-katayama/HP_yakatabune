@@ -1,0 +1,7 @@
+@use "../setting"as *;
+
+@mixin mq($breakpoint) {
+  @media #{$breakpoint} {
+    @content;
+  }
+}

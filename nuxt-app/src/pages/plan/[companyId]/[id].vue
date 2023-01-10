@@ -1,151 +1,151 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeMount } from "vue";
-import companiesToPlasnsJson from "@/assets/data/company-to-plan";
-import PlansJson from "@/assets/data/plan";
-import companiesJson from "@/assets/data/company";
-import { Company, CompanyToPlan, Plan, Reserve } from "models/models";
+// import { ref, computed, onMounted, onBeforeMount } from "vue";
+// import companiesToPlasnsJson from "@/assets/data/company-to-plan";
+// import PlansJson from "@/assets/data/plan";
+// import companiesJson from "@/assets/data/company";
+// import { Company, CompanyToPlan, Plan, Reserve } from "models/models";
 
-const route = useRoute();
-const companyId = Number(route.params.companyId);
-const planId = Number(route.params.id);
-const taxRate = 0.1; // 10%
-const week = ["日", "月", "火", "水", "木", "金", "土"];
-const plan = ref<Plan>();
-const reserve = ref<Reserve>({
-  date: new Date(),
-  num: {
-    adult: 0,
-    middle: 0,
-    elementary: 0,
-    baby: 0,
-  },
-});
+// const route = useRoute();
+// const companyId = Number(route.params.companyId);
+// const planId = Number(route.params.id);
+// const taxRate = 0.1; // 10%
+// const week = ["日", "月", "火", "水", "木", "金", "土"];
+// const plan = ref<Plan>();
+// const reserve = ref<Reserve>({
+//   date: new Date(),
+//   num: {
+//     adult: 0,
+//     middle: 0,
+//     elementary: 0,
+//     baby: 0,
+//   },
+// });
 
-const sumPrice = computed(() => {
-  return (
-    reserve.value!.num.adult * plan.value!.price.adult +
-    reserve.value!.num.middle * plan.value!.price.middle +
-    reserve.value!.num.elementary * plan.value!.price.elementary +
-    reserve.value!.num.baby * plan.value!.price.baby
-  );
-});
-const sumNum = computed(() => {
-  return (
-    reserve.value!.num.adult +
-    reserve.value!.num.middle +
-    reserve.value!.num.elementary +
-    reserve.value!.num.baby
-  );
-});
+// const sumPrice = computed(() => {
+//   return (
+//     reserve.value!.num.adult * plan.value!.price.adult +
+//     reserve.value!.num.middle * plan.value!.price.middle +
+//     reserve.value!.num.elementary * plan.value!.price.elementary +
+//     reserve.value!.num.baby * plan.value!.price.baby
+//   );
+// });
+// const sumNum = computed(() => {
+//   return (
+//     reserve.value!.num.adult +
+//     reserve.value!.num.middle +
+//     reserve.value!.num.elementary +
+//     reserve.value!.num.baby
+//   );
+// });
 
-const dispalyDate = computed(() => {
-  return (
-    reserve.value!.date.getMonth() +
-    1 +
-    "月" +
-    reserve.value!.date.getDate() +
-    "日" +
-    " (" +
-    week[reserve.value!.date.getDay()] +
-    ")"
-  );
-});
+// const dispalyDate = computed(() => {
+//   return (
+//     reserve.value!.date.getMonth() +
+//     1 +
+//     "月" +
+//     reserve.value!.date.getDate() +
+//     "日" +
+//     " (" +
+//     week[reserve.value!.date.getDay()] +
+//     ")"
+//   );
+// });
 
-const onSelectedDate = (yyyymmdd: string) => {
-  reserve.value.date = new Date(yyyymmdd);
-};
+// const onSelectedDate = (yyyymmdd: string) => {
+//   reserve.value.date = new Date(yyyymmdd);
+// };
 
-onBeforeMount(() => {
-  console.log("plan => beforeMounted");
-});
+// onBeforeMount(() => {
+//   console.log("plan => beforeMounted");
+// });
 
-onMounted(() => {
-  console.log("plan => mounted");
-  onClick();
-  isCorrectPlan();
-});
+// onMounted(() => {
+//   console.log("plan => mounted");
+//   onClick();
+//   isCorrectPlan();
+// });
 
-onBeforeUnmount(() => {});
+// onBeforeUnmount(() => {});
 
-const onClick = () => {
-  console.log("all listner");
-  const calendar_input = document.getElementsByClassName("calendar_input")[0];
-  const calendar = document.getElementsByClassName("calendar")[0];
-  calendar_input.addEventListener("click", function () {
-    // ②
-    console.log("カレンダー: カレンダー開閉");
-    const arrow = document.getElementsByClassName("arrow")[0];
-    calendar.classList.toggle("active");
-    arrow.classList.toggle("active");
-  });
-  const calendar_display = document.getElementsByClassName("display")[0];
-  calendar_display.addEventListener("click", function () {
-    // ②
-    console.log("output: カレンダー開閉");
-    const arrow = document.getElementsByClassName("arrow")[0];
-    calendar.classList.toggle("active");
-    arrow.classList.toggle("active");
-  });
-  const people_display = document.getElementsByClassName("display")[1];
-  people_display.addEventListener("click", function () {
-    // ②
-    console.log("people: 人数欄開閉");
-    const people_panel = document.getElementsByClassName("people_panel")[0];
-    const arrow = document.getElementsByClassName("arrow")[1];
-    arrow.classList.toggle("active");
-    people_panel.classList.toggle("active");
-  });
-};
+// const onClick = () => {
+//   console.log("all listner");
+//   const calendar_input = document.getElementsByClassName("calendar_input")[0];
+//   const calendar = document.getElementsByClassName("calendar")[0];
+//   calendar_input.addEventListener("click", function () {
+//     // ②
+//     console.log("カレンダー: カレンダー開閉");
+//     const arrow = document.getElementsByClassName("arrow")[0];
+//     calendar.classList.toggle("active");
+//     arrow.classList.toggle("active");
+//   });
+//   const calendar_display = document.getElementsByClassName("display")[0];
+//   calendar_display.addEventListener("click", function () {
+//     // ②
+//     console.log("output: カレンダー開閉");
+//     const arrow = document.getElementsByClassName("arrow")[0];
+//     calendar.classList.toggle("active");
+//     arrow.classList.toggle("active");
+//   });
+//   const people_display = document.getElementsByClassName("display")[1];
+//   people_display.addEventListener("click", function () {
+//     // ②
+//     console.log("people: 人数欄開閉");
+//     const people_panel = document.getElementsByClassName("people_panel")[0];
+//     const arrow = document.getElementsByClassName("arrow")[1];
+//     arrow.classList.toggle("active");
+//     people_panel.classList.toggle("active");
+//   });
+// };
 
-const getScroll = () => {
-  /* 予約フォームの高さを固定 */
-  let elem = document.getElementById("reserve");
-  if (57 < window.scrollY) {
-    // elem.style.top = '57px'
-  } else {
-    // elem.style.top = 'unset'
-  }
-  console.log(window.scrollY);
-};
+// const getScroll = () => {
+//   /* 予約フォームの高さを固定 */
+//   let elem = document.getElementById("reserve");
+//   if (57 < window.scrollY) {
+//     // elem.style.top = '57px'
+//   } else {
+//     // elem.style.top = 'unset'
+//   }
+//   console.log(window.scrollY);
+// };
 
-const getCompaniesToPlans = (): CompanyToPlan[] => {
-  return companiesToPlasnsJson;
-};
+// const getCompaniesToPlans = (): CompanyToPlan[] => {
+//   return companiesToPlasnsJson;
+// };
 
-const getCompany = (companyId: number) => {
-  return companiesJson.find((company: Company) => company.id === companyId);
-};
+// const getCompany = (companyId: number) => {
+//   return companiesJson.find((company: Company) => company.id === companyId);
+// };
 
-const getPlan = (planId: number) => {
-  return PlansJson.find((plan: Plan) => plan.id === planId);
-};
+// const getPlan = (planId: number) => {
+//   return PlansJson.find((plan: Plan) => plan.id === planId);
+// };
 
-plan.value = getPlan(planId);
+// plan.value = getPlan(planId);
 
-const isCorrectPlan = () => {
-  const isCompanyHavePlan: boolean = !!getCompaniesToPlans().find(
-    (to: CompanyToPlan) => to.companyId === companyId && to.planId === planId
-  );
-  if (isCompanyHavePlan && !!plan.value) {
-    return;
-  } else {
-    if (!!plan.value) {
-      console.log("planId " + planId + " が存在しません");
-    } else if (isCompanyHavePlan === false) {
-      console.log(
-        "会社(" + companyId + ")はプランId " + planId + " を所持していません"
-      );
-    }
-    navigateTo({
-      path: "/company/" + companyId,
-    });
-  }
-};
+// const isCorrectPlan = () => {
+//   const isCompanyHavePlan: boolean = !!getCompaniesToPlans().find(
+//     (to: CompanyToPlan) => to.companyId === companyId && to.planId === planId
+//   );
+//   if (isCompanyHavePlan && !!plan.value) {
+//     return;
+//   } else {
+//     if (!!plan.value) {
+//       console.log("planId " + planId + " が存在しません");
+//     } else if (isCompanyHavePlan === false) {
+//       console.log(
+//         "会社(" + companyId + ")はプランId " + planId + " を所持していません"
+//       );
+//     }
+//     navigateTo({
+//       path: "/company/" + companyId,
+//     });
+//   }
+// };
 </script>
 
 <template>
   <Seo />
-  <main id="plan">
+  <!-- <main id="plan">
     <div class="pankuzu">
       <NuxtLink to="/">TOP</NuxtLink>
       >
@@ -349,5 +349,5 @@ const isCorrectPlan = () => {
         <button>予約する</button>
       </div>
     </div>
-  </main>
+  </main> -->
 </template>

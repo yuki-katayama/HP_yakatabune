@@ -1,0 +1,44 @@
+//各ファイルは必ず登録済みの変数を最初に読み込みます
+//as *で読み込みファイル名を省略することができます
+@use "../global"as *;
+
+//調整用の設定を定義します
+.u-flex {
+  display :flex;
+}
+
+@include mq($pc) {
+  .sp {
+    display: none;
+  }
+  .tab {
+    display: none;
+  }
+  .pc {
+    display: block;
+  }
+}
+
+// @include mq($tab) {
+//   .sp {
+//     display: none;
+//   }
+//   .tab {
+//     display: block;
+//   }
+//   .pc {
+//     display: none;
+//   }
+// }
+
+@include mq($sp) {
+  .sp {
+    display: block !important;
+  }
+  .tab {
+    display: none !important;
+  }
+  .pc {
+    display: none !important;
+  }
+}
