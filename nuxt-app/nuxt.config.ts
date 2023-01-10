@@ -15,13 +15,6 @@ export default defineNuxtConfig({
     },
   },
   css: [
-    "@/assets/style.scss",
-    "@/assets/pages/home.scss",
-    "@/assets/pages/company.scss",
-    "@/assets/pages/plan.scss",
-    "@/assets/base/_header.scss",
-    "@/assets/base/_reset.scss",
-    "@/assets/module/_pankuzu.scss",
-    "@/assets/module/_calendar.scss",
+    "@/sass/style.scss",
   ],
 });
